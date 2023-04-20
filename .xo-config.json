@@ -1,0 +1,22 @@
+{
+	"extends": "xo-react",
+	"ignores": ["src/vite-env.d.ts"],
+	"rules": {
+		"arrow-parens": ["error", "always"],
+		"unicorn/filename-case": ["error", {
+			"cases": {
+				"camelCase": true,
+				"pascalCase": true
+			}
+		}],
+		"n/file-extension-in-import": ["error", "always", { ".tsx": "always" }],
+		"react/jsx-tag-spacing": ["error", { "beforeSelfClosing": "always" }],
+		"jsx-quotes": ["error", "prefer-double"],
+		"quotes": "off",
+		"@typescript-eslint/quotes": ["error", "double"],
+		"object-curly-spacing": "off",
+	    "@typescript-eslint/object-curly-spacing": ["error", "always"],
+		"@typescript-eslint/no-confusing-void-expression": ["error", { "ignoreArrowShorthand": true }],
+		"object-shorthand": ["error", "always", { "avoidExplicitReturnArrows": false }]
+	}
+}
