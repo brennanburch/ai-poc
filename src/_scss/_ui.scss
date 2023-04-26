@@ -1,0 +1,111 @@
+@use "common";
+
+@mixin id() {
+	#ui {
+		background: common.$color-vault-background-dark-grey;
+	}
+}
+
+@mixin link($color: common.$color-lilac) {
+	color: $color;
+	cursor: pointer;
+	text-decoration: none;
+	transition: color 200ms ease-in-out;
+
+	&:visited {
+		color: $color;
+	}
+
+	&:hover {
+		color: contrast($color, lighten($color, 10%), darken($color, 10%));
+	}
+
+	&:active {
+		color: contrast($color, darken($color, 20%), lighten($color, 20%));
+	}
+
+	&:not([href]) {
+		pointer-events: none;
+		color: desaturate($color, 35%);
+	}
+}
+
+@mixin button($color: common.$color-lilac, $disabled: false) {
+	-webkit-appearance: none;
+	font-size: 14px;
+	line-height: 32px;
+	font-weight: normal;
+	display: inline-block;
+	background-color: $color;
+	padding: 0px 16px;
+	color: white;
+	border-radius: 0px;
+	cursor: pointer;
+	border: 0px solid black;
+	outline: none;
+	outline-width: 0px;
+	user-select: none;
+	transition: all 200ms ease-in-out;
+	white-space: nowrap;
+	margin: 0px;
+
+	@if $disabled {
+		background-color: grey;
+		color: lightgrey;
+		pointer-events: none;
+	} @else {
+		&:hover {
+			background-color: contrast(
+				$color,
+				lighten($color, 5%),
+				darken($color, 5%)
+			);
+
+			img {
+				filter: brightness(110%);
+				transition: all 200ms ease-in-out;
+			}
+		}
+
+		&:active {
+			background-color: contrast(
+				$color,
+				darken($color, 10%),
+				lighten($color, 10%)
+			);
+
+			img {
+				filter: brightness(80%);
+				transition: all 200ms ease-in-out;
+			}
+		}
+	}
+
+	&[data-valid='true'] {
+		pointer-events: none;
+		background-color: desaturate($color, 10%);
+		color: rgba(255, 255, 255, 0.9);
+	}
+}
+
+@mixin clickable-image($delta: 20%) {
+	transition: all 200ms ease-in-out;
+	filter: brightness(100%);
+	cursor: pointer;
+
+	&:hover {
+		filter: brightness((100% + $delta));
+	}
+
+	&:active {
+		filter: brightness((100% - $delta));
+	}
+}
+
+@mixin footer-height($footer-height: 128px, ) {
+	padding-bottom: 64px !important; // sigh, must overwrite lib
+
+	@include common.small-query {
+		padding-bottom: 24px !important;
+	}
+}

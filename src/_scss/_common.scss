@@ -1,0 +1,102 @@
+// Copyright (c) 2023 pashpashpash
+
+// Variables
+$color-nugbase-light-grey: rgb(239, 240, 241);
+$color-vault-background-dark-grey: #181816;
+$color-vault-background-darker-grey: #141412;
+$color-vault-black: #16272f;
+$color-vault-purple: rgb(208, 93, 153);
+$color-vault-white: #f8fbff;
+$color-vault-faded-green: #bff7cb;
+$color-vault-lilac: #d1c5f8;
+$color-vault-lilac-dark: #8767f0;
+$color-vault-banana: #fcf0bc;
+$color-vault-green: #60d186;
+$color-vault-emerald: #1c4550;
+$color-vault-firefly: #16272e;
+$color-vault-gray: #84878b;
+$color-vault-lightgray: #bec4cb;
+// Media Queries
+
+$breakpoints: (
+	small: 480px,
+	large: 839px,
+);
+
+//  mixin to print out media queries (based on map keys passed)
+@mixin media-query($keys...) {
+	@each $key in $keys {
+		@media (max-width: map-get($breakpoints, $key)) {
+			@content;
+		}
+	}
+}
+
+@mixin retina-query {
+	@media (-moz-min-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3/2), (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 1.5dppx) {
+		@content;
+	}
+}
+
+@mixin small-query {
+	@media (max-width: 480px) {
+		@content;
+	}
+}
+
+@mixin medium-query {
+	@media (max-width: 839px) {
+		@content;
+	}
+}
+
+// Layout Components
+@mixin page-centered-content($content-width: 780px, $v-center: false) {
+	margin: 0 auto;
+	width: $content-width;
+	min-height: 100%;
+	max-width: 80vw;
+	// padding: 102px 0px 12px; // for header + footer graphic
+
+	@if $v-center {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
+}
+
+@mixin page-footer-background($url: 'https: //mir-s3-cdn-cf.behance.net/project_modules/max_1200/af063a154838673.63494f870cb04.png'){
+	background-image: url($url);
+	background-position: bottom center;
+	background-size: 75% auto;
+	background-repeat: no-repeat;
+}
+
+// General Utilities
+@mixin size($width: 50px, $height: 50px) {
+    width: $width;
+    height: $height;
+}
+
+@mixin square($width: 50px) {
+    @include size($width, $width);
+}
+
+// Standardized z-index categories
+#zlayer {
+    .bottom {
+        z-index: 0;
+    }
+
+    .middle {
+        z-index: 100;
+    }
+
+    .top {
+        z-index: 200;
+    }
+
+    .auto {
+        z-index: auto;
+    }
+}
