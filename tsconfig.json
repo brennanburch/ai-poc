@@ -20,29 +20,11 @@
 		"noEmit": true,
 		"jsx": "react-jsx",
 		"allowImportingTsExtensions": true,
-		"baseUrl": "./src",
+		"baseUrl": ".",
 		"paths": {
-			"@assets/*": [
-				"assets/*"
-			],
-			"@components/*": [
-				"components/*"
-			],
-			"@src/*": [
+			"@*": [
 				"src/*"
 			],
-			"@helpers/*": [
-				"helpers/*"
-			],
-			"@hooks/*": [
-				"hooks/*"
-			],
-			"@utils/*": [
-				"utils/*"
-			],
-			"@_scss/*": [
-				"_scss/*"
-			]
 		}
 	},
 	"include": [
