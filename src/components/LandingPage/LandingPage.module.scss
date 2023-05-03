@@ -1,275 +1,320 @@
 @use "../../_scss/common";
 
 body {
-    background-color: common.$color-vault-white;
+	background-color: common.$color-vault-white;
 }
 
 .background {
-    background-color: common.$color-vault-white;
-    background-size: cover;
-    background-repeat: no-repeat;
+	background-color: common.$color-vault-white;
+	background-size: cover;
+	background-repeat: no-repeat;
 }
 
 .page {
-    padding-top: 92px;
-    min-height: 780px;
+	padding-top: 92px;
+	min-height: 780px;
 }
 
 .pageContent {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-family: 'Helvetica', 'Arial', sans-serif;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	font-family: "Helvetica", "Arial", sans-serif;
+}
+.button {
+	margin-top: 60px;
+	border: none;
+	color: common.$color-vault-white;
+	background-color: common.$color-vault-blue-dark;
+	padding: 8px 12px;
+	border-radius: 4px;
+	cursor: pointer;
+	font-size: 18px;
+	font-weight: 700;
+	transition: background-color 100ms;
+
+	&:hover {
+		background-color: common.$color-vault-blue;
+	}
+}
+.icon {
+	padding-left: 20px;
+}
+.dropzoneText{
+	margin: auto;
+	align-items: center;
+	padding-top:80px;
+	width: 50%;
+}
+.dropzoneIcon{
+	margin:auto;
+	align-items: center;
+	padding-top: 70px;
+	height: 50px;
+}
+.horizontalContainer{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+
+}
+.setupSection{
+	height:80vh;
+}
+.chatSection{
+	height:80vh;
 }
 
 .text {
-    color: common.$color-vault-black;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
+	color: common.$color-vault-black;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
 
-    h1 {
-        font-size: 32px;
-        font-weight: 200;
-        margin-bottom: 30px;
-    }
+	h1 {
+		font-size: 32px;
+		font-weight: 200;
+		margin-bottom: 30px;
+	}
 
-    .error {
-        color: common.$color-vault-purple;
-        margin-top: 24px;
-    }
+	.error {
+		color: common.$color-vault-purple;
+		margin-top: 24px;
+	}
 
-    .workArea {
-        display: flex;
-        width: 100%;
-        height: 520px;
+	.workArea {
+		display: flex;
+		width: 100%;
+		height: auto;
 
-        .leftColumn {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
+		.leftColumn {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			width: 100%;
 
+			.dropzone {
+				border: 2px dashed common.$color-vault-blue;
+				border-radius: 4px;
+				margin-top: 20px;
+				padding: 20px;
+				width: 100%;
+				height: 400px;
+				text-align: center;
+				cursor: pointer;
+				font-size: 24px;
+				color: common.$color-vault-blue-dark;
+				transition: 100ms ease-in;
 
-            .dropzone {
-                    border: 2px dashed common.$color-vault-lilac;
-                    border-radius: 4px;
-                    padding: 16px;
-                    width: 100%;
-                    text-align: center;
-                    cursor: pointer;
-                    font-size: 24px;
-                    color: common.$color-vault-lilac-dark;
+				&:hover {
+					background-color: common.$color-vault-blue;
+					color: common.$color-vault-white;
+				}
 
-                    &:hover {
-                        background-color: common.$color-vault-lilac;
-                    }
+				&.dropzoneLoading {
+					cursor: inherit;
+					animation: background-color-animation 5s infinite;
+				}
+			}
 
-                    &.dropzoneLoading {
-                        cursor: inherit;
-                        animation: background-color-animation 5s infinite;
-                    }
-                }
+			.fileList {
+				margin-top: 32px;
 
-            .fileList {
-                margin-top: 32px;
+				.successfulFiles,
+				.failedFiles {
+					ul {
+						list-style-type: none;
+						padding-inline-start: 0;
+					}
 
-                .successfulFiles,
-                .failedFiles {
-                    ul {
-                        list-style-type: none;
-                        padding-inline-start: 0;
-                    }
+					li {
+						padding: 4px 0;
+					}
+				}
 
-                    li {
-                        padding: 4px 0;
-                    }
-                }
+				.successfulFiles {
+					color: common.$color-vault-green;
+				}
 
-                .successfulFiles {
-                    color: common.$color-vault-green;
-                }
+				.failedFiles {
+					color: common.$color-vault-purple;
+				}
+			}
 
-                .failedFiles {
-                    color: common.$color-vault-purple;
-                }
-            }
+			.questionInput {
+				margin-top: 16px;
+				display: flex;
+				width: 100%;
 
-            .questionInput {
-                margin-top: 16px;
-                display: flex;
-                width: 100%;
+				input {
+					flex-grow: 1;
+					border: 1px solid common.$color-vault-blue-dark;
+					border-radius: 4px;
+					padding: 8px;
+					outline: none;
+					font-size: 14px;
+					min-width: 30px;
 
-                input {
-                    flex-grow: 1;
-                    border: 1px solid common.$color-vault-gray;
-                    border-radius: 4px;
-                    padding: 8px;
-                    outline: none;
-                    font-size: 24px;
-                    min-width: 30px;
+					&:focus {
+						border-color: common.$color-vault-blue;
+					}
+				}
 
-                    &:focus {
-                        border-color: common.$color-vault-lilac;
-                    }
-                }
+				button {
+					margin-left: 8px;
+					border: none;
+					color: common.$color-vault-white;
+					padding: 4px 12px;
+					border-radius: 4px;
+					cursor: pointer;
+					font-size: 14px;
+					font-weight: 400;
+					transition: background-color 100ms;
 
-                button {
-                    margin-left: 8px;
-                    border: none;
-                    color: common.$color-vault-white;
-                    padding: 4px 12px;
-                    border-radius: 4px;
-                    cursor: pointer;
-                    font-size: 14px;
-                    font-weight: 600;
-                    transition: background-color 0.3s;
+					&:hover {
+						background-color: common.$color-vault-blue;
+					}
+				}
 
-                    &:hover {
-                        background-color: common.$color-vault-lilac;
-                    }
-                }
+				.askQuestionDisabled {
+					background-color: common.$color-vault-blue;
+					cursor: inherit;
+				}
 
-                .askQuestionDisabled {
-                    background-color: common.$color-vault-lilac;
-                    cursor: inherit;
-                }
+				.askQuestion {
+					background-color: common.$color-vault-blue-dark;
+				}
+			}
 
-                .askQuestion {
-                    background-color: common.$color-vault-lilac-dark;
-                }
-            }
+			.tokenCount {
+				margin-top: 8px;
+				margin-bottom: 8px;
+				color: common.$color-vault-blue-dark;
+				font-size: 10px;
+			}
 
-            .tokenCount {
-                margin-top: 8px;
-                margin-bottom: 8px;
-                color: common.$color-vault-lilac-dark;
-                font-size: 10px;
-            }
+			.responseDisplay {
+				width: 100%;
 
-            .responseDisplay {
-                width: 100%;
+				h3 {
+					margin-block-start: 0;
+				}
 
-                h3 {
-                    margin-block-start: 0;
-                }
+				.answer {
+					margin-top: 24px;
+					margin-bottom: 16px;
+					font-size: 24px;
+				}
 
-                .answer {
-                    margin-top: 24px;
-                    margin-bottom: 16px;
-                    font-size: 24px;
-                }
+				.contexts {
+					margin-bottom: 64px;
+					.contextSnippet {
+						margin-bottom: 16px;
 
-                .contexts {
-                    margin-bottom: 64px;
-                    .contextSnippet {
-                        margin-bottom: 16px;
+						h4 {
+							cursor: pointer;
+							display: flex;
+							align-items: center;
+							color: common.$color-vault-blue-dark;
+							font-weight: 400;
+							padding-top: 30px;
 
-                        h4 {
-                            cursor: pointer;
-                            display: flex;
-                            align-items: center;
-                            color: common.$color-vault-lilac-dark;
-                            font-weight: 400;
-                            padding-top: 30px;
+							.title {
+								font-weight: 100;
+								margin-left: 14px;
+								padding: 14px;
+								border: 1px solid common.$color-vault-blue-dark;
+								border-radius: 14px;
+								display: flex;
+								align-items: center;
 
-                            .title {
-                                font-weight: 100;
-                                margin-left: 14px;
-                                padding: 14px;
-                                border: 1px solid common.$color-vault-lilac-dark;
-                                border-radius: 14px;
-                                display: flex;
-                                align-items: center;
+								.arrow {
+									margin-left: 14px;
+									font-stretch: expanded;
+									font-size: 14px;
+									transform: scaleY(0.75);
+								}
+							}
 
-                                .arrow {
-                                    margin-left: 14px;
-                                    font-stretch: expanded;
-                                    font-size: 14px;
-                                    transform: scaleY(0.75);
-                                }
-                            }
+							svg {
+								margin-left: 8px;
+								transition: transform 0.3s;
+							}
 
-                            svg {
-                                margin-left: 8px;
-                                transition: transform 0.3s;
-                            }
+							&.collapsed svg {
+								transform: rotate(-90deg);
+							}
+						}
 
-                            &.collapsed svg {
-                                transform: rotate(-90deg);
-                            }
-                        }
+						.content {
+							overflow: hidden;
+							max-height: 0;
+							transition: max-height 0.3s ease-in-out;
 
-                        .content {
-                            overflow: hidden;
-                            max-height: 0;
-                            transition: max-height 0.3s ease-in-out;
+							&.expanded {
+								max-height: 500px;
+							}
+						}
 
-                            &.expanded {
-                                max-height: 500px;
-                            }
-                        }
-
-                        .preview {
-                            display: inline;
-                            white-space: nowrap;
-                            overflow: hidden;
-                            text-overflow: ellipsis;
-                            max-width: 90%;
-                        }
-                    }
-                }
-            }
-        }
-    }
+						.preview {
+							display: inline;
+							white-space: nowrap;
+							overflow: hidden;
+							text-overflow: ellipsis;
+							max-width: 90%;
+						}
+					}
+				}
+			}
+		}
+	}
 }
 
-
 h3 {
-    margin-block-start: 0;
-    text-align: left;
-    width: 100%;
+	margin-block-start: 0;
+	text-align: left;
+	width: 100%;
 }
 
 .loader {
-    border: 4px solid #f3f3f3;
-    border-radius: 50%;
-    border-top: 4px solid common.$color-vault-lilac;
-    width: 40px;
-    height: 40px;
-    animation: spin 2s linear infinite;
-    margin-left: 8px;
+	border: 4px solid #f3f3f3;
+	border-radius: 50%;
+	border-top: 4px solid common.$color-vault-blue;
+	width: 40px;
+	height: 40px;
+	animation: spin 2s linear infinite;
+	margin-left: 8px;
 }
 
 @keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
+	0% {
+		transform: rotate(0deg);
+	}
 
-    100% {
-        transform: rotate(360deg);
-    }
+	100% {
+		transform: rotate(360deg);
+	}
 }
 
 @keyframes background-color-animation {
-    0% {
-        background-color: common.$color-vault-banana;
-    }
+	0% {
+		background-color: common.$color-vault-blue-dark;
+	}
 
-    25% {
-        background-color: common.$color-vault-lilac;
-    }
+	25% {
+		background-color: common.$color-vault-blue;
+	}
 
-    50% {
-        background-color: common.$color-vault-faded-green;
-    }
+	50% {
+		background-color: common.$color-vault-gray;
+	}
 
-    75% {
-        background-color: common.$color-vault-green;
-    }
+	75% {
+		background-color: common.$color-vault-lightgray;
+	}
 
-    100% {
-        background-color: common.$color-vault-banana;
-    }
+	100% {
+		background-color: common.$color-vault-gray;
+	}
 }

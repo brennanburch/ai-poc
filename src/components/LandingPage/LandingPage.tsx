@@ -3,19 +3,39 @@ import clsx from "clsx";
 import { useDropzone } from "react-dropzone";
 import Page from "@components/Page";
 import Go from "@components/Go";
-import { submitQuestion, uploadFiles, type Answer, type UploadResponse } from "@helpers/postApi.ts";
+import {
+	submitQuestion,
+	uploadFiles,
+	type Answer,
+	type UploadResponse,
+} from "@helpers/postApi.ts";
 import ResponseDisplay from "./ResponseDisplay.tsx";
 import styles from "./LandingPage.module.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { faFile } from "@fortawesome/free-solid-svg-icons";
+
+
+
 
 function LandingPage() {
 	const [question, setQuestion] = React.useState("");
-	const [uploadedFiles, setUploadedFiles] = React.useState<UploadResponse["successful_file_names"]>([]);
-	const [failedFiles, setFailedFiles] = React.useState<UploadResponse["failed_file_names"]>({});
+	const [uploadedFiles, setUploadedFiles] = React.useState<
+		UploadResponse["successful_file_names"]
+	>([]);
+	const [failedFiles, setFailedFiles] = React.useState<
+		UploadResponse["failed_file_names"]
+	>({});
 	const [errorMessage, setErrorMessage] = React.useState("");
 	const [response, setResponse] = React.useState<Answer>();
 	const [loading, setLoading] = React.useState(false);
 	const [apiKey, setApiKey] = React.useState("");
 	const [apiKeyApplied, setApiKeyApplied] = React.useState(false);
+
+
+
+
+
 
 	const handleApplyKey = () => {
 		localStorage.setItem("openai-api-key", apiKey);
@@ -58,9 +78,8 @@ function LandingPage() {
 			const error = _error as Error;
 			console.log("Error uploading files:", error);
 
-			setErrorMessage(error?.message
-				? `Error: ${error.message}`
-				: "Error uploading files",
+			setErrorMessage(
+				error?.message ? `Error: ${error.message}` : "Error uploading files"
 			);
 			setUploadedFiles([]);
 			setFailedFiles({});
@@ -101,52 +120,23 @@ function LandingPage() {
 		<Page
 			pageClass={styles.page}
 			contentBackgroundClass={styles.background}
-			contentPreferredWidth={1300}
+			contentPreferredWidth={700}
 			contentClass={styles.pageContent}
 		>
+			{/*break this into 2 slides, Get Started and Chat Interface*/}
+			
 			<div className={styles.text}>
-				<h1>Get Started With PoeticAI</h1>
-				{errorMessage && (
-					<div className={styles.error}>{errorMessage}</div>
-				)}
+
+
+
 				<div className={styles.workArea}>
 					<div className={styles.leftColumn}>
-						<div
-							{...getRootProps()}
-							className={clsx(styles.dropzone, loading && styles.dropzoneLoading)}
-						>
-							<input {...getInputProps()} disabled={loading} />
-							<p>
-								{loading
-									? "Loading..."
-									: "Drag and drop files to add to the knowledgebase here, or click to select files"}
-							</p>
-						</div>
-						<div className={styles.questionInput}>
-							<input
-								type="text"
-								value={question}
-								placeholder="Enter your question here..."
-								onChange={(event) => setQuestion(event.target.value)}
-							/>
-							<button
-								type="submit"
-								disabled={loading || !question}
-								className={
-									loading
-										? styles.askQuestionDisabled
-										: styles.askQuestion
-								}
-								onClick={handleAskQuestion}
-							>
-								Submit
-							</button>
-							{loading && (
-								<div className={styles.loader} />
-							)}
-						</div>
+
+
 						{!apiKeyApplied && (
 							<>
+							<h1>Get Started With PoeticAI</h1>
+							{errorMessage && <div className={styles.error}>{errorMessage}</div>}
 								<div className={styles.questionInput}>
 									<input
 										type="text"
@@ -161,10 +151,11 @@ function LandingPage() {
 									>
 										Apply
 									</button>
+
 								</div>
 								<div className={styles.tokenCount}>
 									To get an API key, visit the{" "}
-									<Go to="https://platform.openai.com/account/api-keys" data-action="" data-category="">
+									<Go to="https://platform.openai.com/account/api-keys" data-action={""} data-category={""}>
 										<span
 											style={{
 												fontWeight: 900,
@@ -175,14 +166,58 @@ function LandingPage() {
 										</span>
 									</Go>
 								</div>
+								<div
+									{...getRootProps()}
+									className={clsx(
+										styles.dropzone,
+										loading && styles.dropzoneLoading
+									)}
+								>
+									<input {...getInputProps()} disabled={loading}  />
+									<p className={styles.dropzoneText}>
+										{loading
+											? "Loading..."
+											: "Drag and drop files to add to the knowledgebase here, or click to select files" }
+
+									</p>
+									<FontAwesomeIcon icon={faFile} className={styles.dropzoneIcon}/>
+								</div>
+
+								<button
+										type="submit"
+										className={styles.button}
+										onClick={handleApplyKey}
+									>
+										Next
+										<FontAwesomeIcon icon={faArrowRight} className={styles.icon} />
+									</button>
+
+									<div className={styles.chatSection}></div>
+									<div className={styles.questionInput}>
+							<input
+								type="text"
+								value={question}
+								placeholder="So, what's on your mind?"
+								onChange={(event) => setQuestion(event.target.value)}
+							/>
+							<button
+								type="submit"
+								disabled={loading || !question}
+								className={
+									loading ? styles.askQuestionDisabled : styles.askQuestion
+								}
+								onClick={handleAskQuestion}
+							>
+								Submit
+							</button>
+							{loading && <div className={styles.loader} />}
+						</div>
 							</>
 						)}
 						{response?.tokens && (
 							<div className={styles.tokenCount}>
 								TOTAL TOKENS USED:{" "}
-								<span style={{ fontWeight: 900 }}>
-									{response.tokens}
-								</span>
+								<span style={{ fontWeight: 900 }}>{response.tokens}</span>
 							</div>
 						)}
 						{response && <ResponseDisplay response={response} />}
@@ -205,9 +240,7 @@ function LandingPage() {
 										{failedFilenames.map((file, index) => (
 											<li key={index}>
 												{file}
-												<div>
-													Reason: {failedFiles[file]}
-												</div>
+												<div>Reason: {failedFiles[file]}</div>
 											</li>
 										))}
 									</ul>
@@ -216,7 +249,8 @@ function LandingPage() {
 						</div>
 					</div>
 				</div>
-			</div>
+				</div>
+
 		</Page>
 	);
 }

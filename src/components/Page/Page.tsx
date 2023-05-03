@@ -10,7 +10,6 @@ type PageProps = {
 	contentClass?: string;
 	contentBackgroundClass?: string;
 	contentBackground?: string;
-
 	verticalCenter?: boolean;
 	footerEnabled?: boolean;
 	footerFloating?: boolean;
