@@ -1,6 +1,5 @@
 import React from "react";
 import clsx from "clsx";
-import Footer from "@components/Footer";
 import styles from "./Page.module.scss";
 
 type PageProps = {
@@ -11,8 +10,7 @@ type PageProps = {
 	contentClass?: string;
 	contentBackgroundClass?: string;
 	contentBackground?: string;
-	footerComponent?: React.ReactNode;
-	showContentFooter?: boolean;
+
 	verticalCenter?: boolean;
 	footerEnabled?: boolean;
 	footerFloating?: boolean;
@@ -44,7 +42,7 @@ function Page(props: PageProps) {
 						className={clsx(
 							styles.content,
 							props.contentClass,
-							props.showContentFooter && styles.showFooter,
+
 							props.verticalCenter && styles.verticalCenter,
 						)}
 						style={{
@@ -56,9 +54,7 @@ function Page(props: PageProps) {
 					</div>
 				</div>
 			</div>
-			{props.footerEnabled && (props.footerComponent
-				?? <Footer floating={props.footerFloating} backgroundClass={props.pageBackgroundClass} />
-			)}
+
 		</div>
 	);
 }

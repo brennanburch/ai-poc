@@ -7,11 +7,7 @@ import { submitQuestion, uploadFiles, type Answer, type UploadResponse } from "@
 import ResponseDisplay from "./ResponseDisplay.tsx";
 import styles from "./LandingPage.module.scss";
 
-type LandingPageProps = {
-	history: Record<string, unknown>;
-};
-
-function LandingPage({ history }: LandingPageProps) {
+function LandingPage() {
 	const [question, setQuestion] = React.useState("");
 	const [uploadedFiles, setUploadedFiles] = React.useState<UploadResponse["successful_file_names"]>([]);
 	const [failedFiles, setFailedFiles] = React.useState<UploadResponse["failed_file_names"]>({});
@@ -109,7 +105,7 @@ function LandingPage({ history }: LandingPageProps) {
 			contentClass={styles.pageContent}
 		>
 			<div className={styles.text}>
-				<h1>The "OP" Golang Question-Answering Stack</h1>
+				<h1>Get Started With PoeticAI</h1>
 				{errorMessage && (
 					<div className={styles.error}>{errorMessage}</div>
 				)}
@@ -168,7 +164,7 @@ function LandingPage({ history }: LandingPageProps) {
 								</div>
 								<div className={styles.tokenCount}>
 									To get an API key, visit the{" "}
-									<Go to="https://platform.openai.com/account/api-keys">
+									<Go to="https://platform.openai.com/account/api-keys" data-action="" data-category="">
 										<span
 											style={{
 												fontWeight: 900,
