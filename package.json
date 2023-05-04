@@ -21,6 +21,7 @@
     "font-awesome": "^4.7.0",
     "ky": "^0.33.3",
     "react": "^18.2.0",
+    "react-container-query": "^0.12.1",
     "react-dom": "^18.2.0",
     "react-dropzone": "^14.2.3",
     "react-router-dom": "^6.10.0"

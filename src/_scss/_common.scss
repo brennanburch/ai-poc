@@ -9,7 +9,7 @@ $color-vault-purple: rgb(208, 93, 153);
 $color-vault-white: #f8fbff;
 $color-vault-faded-green: #bff7cb;
 $color-vault-blue: #1e2f79;
-$color-vault-blue-dark: #0F1842;
+$color-vault-blue-dark: #0f1842;
 $color-vault-banana: #fcf0bc;
 $color-vault-green: #60d186;
 $color-vault-emerald: #1c4550;
@@ -33,7 +33,11 @@ $breakpoints: (
 }
 
 @mixin retina-query {
-	@media (-moz-min-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3/2), (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 1.5dppx) {
+	@media (-moz-min-device-pixel-ratio: 1.5),
+		(-o-min-device-pixel-ratio: 3/2),
+		(-webkit-min-device-pixel-ratio: 1.5),
+		(min-device-pixel-ratio: 1.5),
+		(min-resolution: 1.5dppx) {
 		@content;
 	}
 }
@@ -65,7 +69,10 @@ $breakpoints: (
 	}
 }
 
-@mixin page-footer-background($url: 'https: //mir-s3-cdn-cf.behance.net/project_modules/max_1200/af063a154838673.63494f870cb04.png'){
+@mixin page-footer-background(
+	$url:
+		"https: //mir-s3-cdn-cf.behance.net/project_modules/max_1200/af063a154838673.63494f870cb04.png"
+) {
 	background-image: url($url);
 	background-position: bottom center;
 	background-size: 75% auto;
@@ -74,29 +81,29 @@ $breakpoints: (
 
 // General Utilities
 @mixin size($width: 50px, $height: 50px) {
-    width: $width;
-    height: $height;
+	width: $width;
+	height: $height;
 }
 
 @mixin square($width: 50px) {
-    @include size($width, $width);
+	@include size($width, $width);
 }
 
 // Standardized z-index categories
 #zlayer {
-    .bottom {
-        z-index: 0;
-    }
+	.bottom {
+		z-index: 0;
+	}
 
-    .middle {
-        z-index: 100;
-    }
+	.middle {
+		z-index: 100;
+	}
 
-    .top {
-        z-index: 200;
-    }
+	.top {
+		z-index: 200;
+	}
 
-    .auto {
-        z-index: auto;
-    }
+	.auto {
+		z-index: auto;
+	}
 }
