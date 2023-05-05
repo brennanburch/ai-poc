@@ -2,6 +2,8 @@
 
 body {
 	background-color: common.$color-vault-white;
+	font-family: 'Urbanist', sans-serif;
+    font-style: normal;
 }
 
 .background {
@@ -24,7 +26,8 @@ body {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	font-family: "Helvetica", "Arial", sans-serif;
+	font-family: 'Urbanist', sans-serif;
+    font-style: normal;
 }
 .button {
 	margin-top: 60px;
@@ -35,11 +38,14 @@ body {
 	border-radius: 4px;
 	cursor: pointer;
 	font-size: 18px;
-	font-weight: 700;
+	font-weight: 500;
 	transition: background-color 100ms;
+	font-family: 'Urbanist', sans-serif;
+    font-style: normal;
 
 	&:hover {
 		background-color: common.$color-vault-blue;
+		font-weight: 700;
 	}
 }
 .icon {
@@ -78,8 +84,10 @@ body {
 
 	h1 {
 		font-size: 32px;
-		font-weight: 200;
+		font-weight: 500;
 		margin-bottom: 30px;
+		font-family: 'Urbanist', sans-serif;
+    font-style: normal;
 	}
 
 	.error {
@@ -125,6 +133,7 @@ body {
 			&:hover {
 				background-color: common.$color-vault-blue-dark;
 				color: common.$color-vault-white;
+				font-weight: 700;
 			}
 
 			&.dropzoneLoading {
@@ -168,7 +177,7 @@ body {
 				border-radius: 4px;
 				padding: 8px;
 				outline: none;
-				font-size: 14px;
+				font-size: 18px;
 				min-width: 30px;
 
 				&:focus {
