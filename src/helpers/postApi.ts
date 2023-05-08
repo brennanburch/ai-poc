@@ -1,72 +1,46 @@
-import ky from "ky";
+import _ky from "ky";
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
-const getOrCreateUUID = () => {
-	const localStorageKey = "userUUID";
-
-	// eslint-disable-next-line @typescript-eslint/naming-convention
-	let userUUID = localStorage.getItem(localStorageKey);
-
-	if (!userUUID) {
-		userUUID = crypto.randomUUID();
-		localStorage.setItem(localStorageKey, userUUID);
-	}
-
-	return userUUID;
-};
-
-const getCustomOpenAiApiKey = () => localStorage.getItem("openai-api-key") ?? "";
-
+const ky = _ky.extend({
+	headers: {
+		// eslint-disable-next-line @typescript-eslint/naming-convention
+		Authorization: `Basic ${btoa(":lxis3000")}`,
+	},
+});
 /** 10min in ms */
 const timeout = 600_000;
 
 export type Context = {
 	text: string;
-	title: string;
+	uuid: string;
 };
 
 export type Answer = {
 	answer: string;
 	context: Context[];
-	tokens: number;
 };
 
-// TODO: cancelable? custom messages? body -> json
-
-export const submitQuestion = async (question: string, model: string): Promise<Answer> => {
-	const uuid = getOrCreateUUID();
-	const data = new FormData();
-
-	data.append("question", question);
-	data.append("model", model);
-	data.append("apikey", getCustomOpenAiApiKey());
-	data.append("uuid", uuid);
-
-	return ky
-		.post("/api/questions", { body: data, timeout })
-		.json();
-};
+export const submitQuestion = async (question: string): Promise<Answer> => (ky
+	.post(
+		"https:/ai-poc-server/docs/chat",
+		{ json: { message: question }, timeout },
+	)
+	.json()
+);
 
 export type UploadResponse = {
-	message: string;
-	num_files_succeeded: number;
-	num_files_failed: number;
-	successful_file_names: string[];
-	failed_file_names: Record<string, string>;
+
+	message?: string;
+	uuid: string;
 };
 
-export const uploadFiles = async (files: File[]): Promise<UploadResponse> => {
-	const uuid = getOrCreateUUID();
+export const uploadFiles = async (file: File): Promise<UploadResponse> => {
 	const data = new FormData();
-
-	for (const file of files) {
-		data.append("files", file);
-	}
-
-	data.append("apikey", getCustomOpenAiApiKey());
-	data.append("uuid", uuid);
+	data.append("file", file);
 
 	return ky
-		.post("/api/upload", { body: data, timeout })
+		.post(
+			"https://ai-poc-server.onrender.com/docs/upload-mock",
+			{ body: data, timeout },
+		)
 		.json();
 };

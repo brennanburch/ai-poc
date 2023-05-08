@@ -21,7 +21,7 @@ function ContextSnippet({ context, index }: ContextSnippetProps) {
 			<h4 onClick={toggleCollapse}>
 				Context {index + 1}
 				<span className={styles.title}>
-					{context.title}
+					
 					<span className={styles.arrow}>{collapsed ? "▼" : "▲"}</span>
 				</span>
 			</h4>

@@ -2,8 +2,8 @@
 
 body {
 	background-color: common.$color-vault-white;
-	font-family: 'Urbanist', sans-serif;
-    font-style: normal;
+	font-family: "Urbanist", sans-serif;
+	font-style: normal;
 }
 
 .background {
@@ -24,24 +24,24 @@ body {
 
 .pageContent {
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
 	align-items: center;
-	font-family: 'Urbanist', sans-serif;
-    font-style: normal;
+	font-family: "Urbanist", sans-serif;
+	font-style: normal;
 }
 .button {
 	margin-top: 60px;
 	border: none;
 	color: common.$color-vault-white;
-	background-color: common.$color-vault-blue-dark;
+	background-color: common.$color-vault-black;
 	padding: 8px 12px;
 	border-radius: 4px;
 	cursor: pointer;
 	font-size: 18px;
 	font-weight: 500;
 	transition: background-color 100ms;
-	font-family: 'Urbanist', sans-serif;
-    font-style: normal;
+	font-family: "Urbanist", sans-serif;
+	font-style: normal;
 
 	&:hover {
 		background-color: common.$color-vault-blue;
@@ -54,13 +54,13 @@ body {
 .dropzoneText {
 	margin: auto;
 	align-items: center;
-	padding-top: 15%;
+	padding-top: 20px;
 	width: 50%;
 }
 .dropzoneIcon {
 	margin: auto;
 	align-items: center;
-	padding-top: 10%;
+	padding-top: 60px;
 	height: 50px;
 }
 .horizontalContainer {
@@ -78,16 +78,16 @@ body {
 .text {
 	color: common.$color-vault-black;
 	display: flex;
-	flex-direction: row;
+
 	align-items: center;
 	width: 100%;
 
 	h1 {
 		font-size: 32px;
-		font-weight: 500;
+		font-weight: 700;
 		margin-bottom: 30px;
-		font-family: 'Urbanist', sans-serif;
-    font-style: normal;
+		font-family: "Urbanist", sans-serif;
+		font-style: normal;
 	}
 
 	.error {
@@ -97,24 +97,24 @@ body {
 
 	.workArea {
 		display: flex;
-		flex-direction: row;
 		width: 100%;
 		height: auto;
 		align-items: center;
-
 
 		.leftColumn {
 			display: inline-flex;
 			flex-direction: column;
 			align-items: center;
 			width: 100%;
+			height: auto;
 		}
 
 		.rightColumn {
 			display: flex;
-			flex-direction: block;
+
 			align-items: center;
 			width: 100%;
+			height: 100vh;
 		}
 
 		.dropzone {
@@ -127,13 +127,14 @@ body {
 			text-align: center;
 			cursor: pointer;
 			font-size: 24px;
-			color: common.$color-vault-blue-dark;
-			transition: 100ms ease-in;
+			font-weight: 500;
+			background-color: common.$color-vault-black;
+			color: common.$color-vault-white;
+			transition: 300ms ease-in;
 
 			&:hover {
 				background-color: common.$color-vault-blue-dark;
 				color: common.$color-vault-white;
-				font-weight: 700;
 			}
 
 			&.dropzoneLoading {
@@ -197,17 +198,17 @@ body {
 				transition: background-color 100ms;
 
 				&:hover {
-					background-color: common.$color-vault-blue;
+					background-color: common.$color-vault-blue-dark;
 				}
 			}
 
 			.askQuestionDisabled {
-				background-color: common.$color-vault-blue;
+				background-color: common.$color-vault-black;
 				cursor: inherit;
 			}
 
 			.askQuestion {
-				background-color: common.$color-vault-blue-dark;
+				background-color: common.$color-vault-black;
 			}
 		}
 
@@ -240,7 +241,7 @@ body {
 						cursor: pointer;
 						display: flex;
 						align-items: center;
-						color: common.$color-vault-blue-dark;
+						color: common.$color-vault-black;
 						font-weight: 400;
 						padding-top: 30px;
 
@@ -248,7 +249,7 @@ body {
 							font-weight: 100;
 							margin-left: 14px;
 							padding: 14px;
-							border: 1px solid common.$color-vault-blue-dark;
+							border: 1px solid common.$color-vault-black;
 							border-radius: 14px;
 							display: flex;
 							align-items: center;
