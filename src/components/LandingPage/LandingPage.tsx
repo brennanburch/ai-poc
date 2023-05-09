@@ -3,7 +3,7 @@ import clsx from "clsx";
 import { useDropzone } from "react-dropzone";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFile } from "@fortawesome/free-solid-svg-icons";
-import { submitQuestion, uploadFiles, type Answer } from "@helpers/postApi.ts";
+import { submitQuestion, uploadFiles, getNewSessionId, type Answer } from "@helpers/server.ts";
 import Page from "@components/Page";
 import ResponseDisplay from "./ResponseDisplay.tsx";
 import styles from "./LandingPage.module.scss";
@@ -53,14 +53,9 @@ function LandingPage() {
 		await Promise.all(files.map(async (file) => {
 			try {
 				console.log(`Uploading file "${file.name}"`);
-				const { fileId, sessionId: newSessionId } = await uploadFiles({ file, sessionId });
+				const { fileId } = await uploadFiles({ file, sessionId });
 
 				setUploadedFiles([...uploadedFiles, { file, fileId }]);
-
-				if (newSessionId) {
-					console.log("Started new session:", newSessionId);
-					setSessionId(newSessionId);
-				}
 			} catch (_error: unknown) {
 				const error = _error as Error;
 
@@ -85,6 +80,22 @@ function LandingPage() {
 			document.removeEventListener("keydown", handleKeyDown);
 		};
 	}, [loading, question]);
+
+	React.useEffect(() => {
+		const handleGetNewSessionId = async () => {
+			setLoading(true);
+
+			const { sessionId: newSessionId } = await getNewSessionId();
+			setSessionId(newSessionId);
+
+			console.log("Started new session:", newSessionId);
+			setLoading(false);
+		};
+
+		if (!sessionId) {
+			void handleGetNewSessionId();
+		}
+	}, [sessionId]);
 
 	const { getRootProps, getInputProps } = useDropzone({
 		onDrop: handleFileUpload,

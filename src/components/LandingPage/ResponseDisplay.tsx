@@ -1,5 +1,5 @@
 import React from "react";
-import type { Answer } from "@helpers/postApi";
+import type { Answer } from "@helpers/server.ts";
 import type { UploadedFile } from "./LandingPage.tsx";
 import ContextSnippet from "./ContextSnippet.tsx";
 import styles from "./LandingPage.module.scss";

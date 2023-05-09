@@ -1,5 +1,5 @@
 import React from "react";
-import type { Context } from "@helpers/postApi.ts";
+import type { Context } from "@helpers/server.ts";
 import type { UploadedFile } from "./LandingPage.tsx";
 import styles from "./LandingPage.module.scss";
 

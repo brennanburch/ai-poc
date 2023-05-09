@@ -11,6 +11,14 @@ const ky = _ky.extend({
 /** 10min in ms */
 const timeout = 600_000;
 
+type SessionId = {
+	sessionId: string;
+};
+
+export const getNewSessionId = async (): Promise<SessionId> => (
+	ky.get("https://ai-poc-server.onrender.com/docs/start-session").json()
+);
+
 type QuestionInput = {
 	question: string;
 	sessionId: string;
@@ -42,7 +50,6 @@ type UploadInput = {
 export type UploadResponse = {
 	message: string;
 	fileId: string;
-	sessionId?: string;
 };
 
 export const uploadFiles = async ({ file, sessionId }: UploadInput): Promise<UploadResponse> => (ky
