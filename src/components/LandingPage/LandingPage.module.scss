@@ -184,6 +184,10 @@ body {
 				&:focus {
 					border-color: common.$color-vault-blue;
 				}
+
+				&:disabled {
+					background-color: common.$color-vault-lightgray;
+				}
 			}
 
 			button {
@@ -202,13 +206,13 @@ body {
 				}
 			}
 
-			.askQuestionDisabled {
-				background-color: common.$color-vault-black;
-				cursor: inherit;
-			}
-
 			.askQuestion {
 				background-color: common.$color-vault-black;
+
+				&:disabled {
+					background-color: common.$color-vault-gray;
+					cursor: inherit;
+				}
 			}
 		}
 

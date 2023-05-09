@@ -6,12 +6,18 @@ const ky = _ky.extend({
 		Authorization: `Basic ${btoa(":lxis3000")}`,
 	},
 });
+
 /** 10min in ms */
 const timeout = 600_000;
 
+type QuestionInput = {
+	question: string;
+	sessionId: string;
+};
+
 export type Context = {
-	text: string;
-	uuid: string;
+	fileId: string;
+	content: string;
 };
 
 export type Answer = {
@@ -19,27 +25,33 @@ export type Answer = {
 	context: Context[];
 };
 
-export const submitQuestion = async (question: string): Promise<Answer> => (ky
+export const submitQuestion = async ({ question, sessionId }: QuestionInput): Promise<Answer> => (ky
 	.post(
-		"https:/ai-poc-server/docs/chat",
-		{ json: { message: question }, timeout },
+		"http://localhost:3000/docs/chat-mock",
+		{ json: { message: question, sessionId }, timeout },
 	)
 	.json()
 );
 
-export type UploadResponse = {
-
-	message?: string;
-	uuid: string;
+type UploadInput = {
+	file: File;
+	sessionId: string;
 };
 
-export const uploadFiles = async (file: File): Promise<UploadResponse> => {
+export type UploadResponse = {
+	message: string;
+	fileId: string;
+	sessionId?: string;
+};
+
+export const uploadFiles = async ({ file, sessionId }: UploadInput): Promise<UploadResponse> => {
 	const data = new FormData();
 	data.append("file", file);
+	data.append("sessionId", sessionId);
 
 	return ky
 		.post(
-			"https://ai-poc-server.onrender.com/docs/upload-mock",
+			"http://localhost:3000/docs/upload",
 			{ body: data, timeout },
 		)
 		.json();

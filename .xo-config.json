@@ -17,6 +17,7 @@
 		"object-curly-spacing": "off",
 	    "@typescript-eslint/object-curly-spacing": ["error", "always"],
 		"@typescript-eslint/no-confusing-void-expression": ["error", { "ignoreArrowShorthand": true }],
-		"object-shorthand": ["error", "always", { "avoidExplicitReturnArrows": false }]
+		"object-shorthand": ["error", "always", { "avoidExplicitReturnArrows": false }],
+		"react/no-array-index-key": "warn"
 	}
 }
