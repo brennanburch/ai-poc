@@ -27,7 +27,7 @@ export type Answer = {
 
 export const submitQuestion = async ({ question, sessionId }: QuestionInput): Promise<Answer> => (ky
 	.post(
-		"http://localhost:3000/docs/chat-mock",
+		"https://ai-poc-server.onrender.com/docs/chat-mock",
 		{ json: { message: question, sessionId }, timeout },
 	)
 	.json()
@@ -51,7 +51,7 @@ export const uploadFiles = async ({ file, sessionId }: UploadInput): Promise<Upl
 
 	return ky
 		.post(
-			"http://localhost:3000/docs/upload",
+			"https://ai-poc-server.onrender.com/docs/upload",
 			{ body: data, timeout },
 		)
 		.json();
