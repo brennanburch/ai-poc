@@ -21,6 +21,7 @@
     "font-awesome": "^4.7.0",
     "gsap": "^3.11.5",
     "ky": "^0.33.3",
+    "object-to-formdata": "^4.4.2",
     "react": "^18.2.0",
     "react-container-query": "^0.12.1",
     "react-dom": "^18.2.0",

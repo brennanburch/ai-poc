@@ -1,4 +1,5 @@
 import _ky from "ky";
+import { serialize as formData } from "object-to-formdata";
 
 const ky = _ky.extend({
 	headers: {
@@ -27,7 +28,7 @@ export type Answer = {
 
 export const submitQuestion = async ({ question, sessionId }: QuestionInput): Promise<Answer> => (ky
 	.post(
-		"https://ai-poc-server.onrender.com/docs/chat-mock",
+		"https://ai-poc-server.onrender.com/docs/chat",
 		{ json: { message: question, sessionId }, timeout },
 	)
 	.json()
@@ -44,15 +45,10 @@ export type UploadResponse = {
 	sessionId?: string;
 };
 
-export const uploadFiles = async ({ file, sessionId }: UploadInput): Promise<UploadResponse> => {
-	const data = new FormData();
-	data.append("file", file);
-	data.append("sessionId", sessionId);
-
-	return ky
-		.post(
-			"https://ai-poc-server.onrender.com/docs/upload",
-			{ body: data, timeout },
-		)
-		.json();
-};
+export const uploadFiles = async ({ file, sessionId }: UploadInput): Promise<UploadResponse> => (ky
+	.post(
+		"https://ai-poc-server.onrender.com/docs/upload",
+		{ body: formData({ file, sessionId }), timeout },
+	)
+	.json()
+);
