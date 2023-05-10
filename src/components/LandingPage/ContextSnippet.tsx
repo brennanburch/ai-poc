@@ -16,17 +16,24 @@ function ContextSnippet({ context: { fileId, content: fileContent }, files, numb
 		setCollapsed(!collapsed);
 	};
 
-	const { file } = files.find((file) => file.fileId === fileId)!;
-	const preview = fileContent.slice(0, 222) + (fileContent.length > 222 ? "..." : "");
+	const maybeFile = files.find((file) => file.fileId === fileId);
+
+if (!maybeFile) {
+	return (<div />);
+}
+
+const { file } = maybeFile;
+const preview = fileContent.slice(0, 222) + (fileContent.length > 222 ? "..." : "");
 
 	return (
 		<div className={styles.contextSnippet}>
 			<h4 onClick={toggleCollapse}>
 				Context {number}
-				<span className={styles.title}>
+				<label className={styles.title}>
 					{file.name}
 					<span className={styles.arrow}>{collapsed ? "▼" : "▲"}</span>
-				</span>
+					
+				</label>
 			</h4>
 			<div className={collapsed ? styles.collapsed : styles.expanded}>
 				{collapsed ? preview : fileContent}

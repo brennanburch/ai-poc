@@ -52,15 +52,15 @@ body {
 	padding-left: 20px;
 }
 .dropzoneText {
-	margin: auto;
+
 	align-items: center;
 	padding-top: 20px;
 	width: 50%;
 }
 .dropzoneIcon {
-	margin: auto;
+
 	align-items: center;
-	padding-top: 60px;
+	
 	height: 50px;
 }
 .horizontalContainer {
@@ -88,6 +88,7 @@ body {
 		margin-bottom: 30px;
 		font-family: "Urbanist", sans-serif;
 		font-style: normal;
+		text-align: center;
 	}
 
 	.error {
@@ -119,7 +120,7 @@ body {
 
 		.dropzone {
 			border: 2px dashed common.$color-vault-blue;
-			border-radius: 4px;
+			border-radius: 8px;
 			margin-top: 20px;
 			padding: 20px;
 			width: 100%;
@@ -131,6 +132,10 @@ body {
 			background-color: common.$color-vault-black;
 			color: common.$color-vault-white;
 			transition: 300ms ease-in;
+			display: flex;
+			flex-direction: column;
+  			align-items: center;
+  			justify-content: center;
 
 			&:hover {
 				background-color: common.$color-vault-blue-dark;

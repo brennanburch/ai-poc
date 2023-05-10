@@ -6,6 +6,8 @@ import { faFile } from "@fortawesome/free-solid-svg-icons";
 import { submitQuestion, uploadFiles, getNewSessionId, type Answer } from "@helpers/server.ts";
 import Page from "@components/Page";
 import ResponseDisplay from "./ResponseDisplay.tsx";
+import ContextSnippet from "./ContextSnippet.tsx";
+
 import styles from "./LandingPage.module.scss";
 
 export type UploadedFile = {
@@ -50,20 +52,25 @@ function LandingPage() {
 		setErrorMessage("");
 		setLoading(true);
 
+		const newUploadedFiles: UploadedFile[] = [];
+		const newFailedFiles: FailedFile[] = [];
+
 		await Promise.all(files.map(async (file) => {
 			try {
 				console.log(`Uploading file "${file.name}"`);
 				const { fileId } = await uploadFiles({ file, sessionId });
 
-				setUploadedFiles([...uploadedFiles, { file, fileId }]);
+				newUploadedFiles.push({ file, fileId });
 			} catch (_error: unknown) {
 				const error = _error as Error;
 
 				console.log(`Error uploading file "${file.name}":`, error);
-				setFailedFiles([...failedFiles, { file, reason: error.message }]);
+				newFailedFiles.push({ file, reason: error.message });
 			}
 		}));
 
+		setUploadedFiles([...uploadedFiles, ...newUploadedFiles]);
+		setFailedFiles([...failedFiles, ...newFailedFiles]);
 		setLoading(false);
 	};
 
@@ -103,7 +110,7 @@ function LandingPage() {
 	});
 	const dropzoneContent = () => {
 	const [width, setWidth] = React.useState(window.innerWidth);
-  const breakpoint = 620;
+  const breakpoint = 769;
 
   React.useEffect(() => {
     const handleWindowResize = () => setWidth(window.innerWidth)
@@ -116,13 +123,12 @@ function LandingPage() {
   return width < breakpoint ? <p className={styles.dropzoneText}>
   {loading
 	  ? "Loading..."
-	  : "Tap to select files"}
-</p> : <p className={styles.dropzoneText}>
-								{loading
-									? "Loading..."
-									: "Drag and drop files to add to the knowledge base here, or click to select files"}
-							</p>;
-}
+	  : "Tap to select files"}</p> :
+	  <p className={styles.dropzoneText}>
+		{loading
+			? "Loading..."
+			: "Drag and drop files to add to the knowledge base here, or click to select files"}</p>;
+		}
 
 	return (
 		<Page
@@ -153,9 +159,7 @@ function LandingPage() {
 							/>
 							{dropzoneContent()}
 						</div>
-						{errorMessage && (
-							<div className={styles.error}>{errorMessage}</div>
-						)}
+
 
 						{response && <ResponseDisplay response={response} files={uploadedFiles} />}
 
