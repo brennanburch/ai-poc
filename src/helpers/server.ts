@@ -26,6 +26,7 @@ type QuestionInput = {
 
 export type Context = {
 	fileId: string;
+	name: string;
 	content: string;
 };
 

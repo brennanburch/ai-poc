@@ -6,18 +6,17 @@ import styles from "./LandingPage.module.scss";
 
 type ResponseDisplayProps = {
 	response: Answer;
-	files: UploadedFile[];
 };
 
-function ResponseDisplay({ response, files }: ResponseDisplayProps) {
+function ResponseDisplay({ response }: ResponseDisplayProps) {
 	return (
 		<div className={styles.responseDisplay}>
 			<div className={styles.answer}>{response.answer}</div>
-			{<div className={styles.contexts}>
+			<div className={styles.contexts}>
 				{response.context.map((context, index) => (
-					<ContextSnippet key={index} context={context} files={files} number={index + 1} />
+					<ContextSnippet key={index} context={context} number={index + 1} />
 				))}
-			</div> }
+			</div>
 		</div>
 	);
 }

@@ -60,7 +60,7 @@ body {
 .dropzoneIcon {
 
 	align-items: center;
-	
+
 	height: 50px;
 }
 .horizontalContainer {
@@ -243,6 +243,7 @@ body {
 
 			.contexts {
 				margin-bottom: 64px;
+
 				.contextSnippet {
 					margin-bottom: 16px;
 
@@ -285,18 +286,21 @@ body {
 						overflow: hidden;
 						max-height: 0;
 						transition: max-height 0.3s ease-in-out;
-
-						&.expanded {
-							max-height: 500px;
-						}
 					}
 
 					.preview {
-						display: inline;
+						display: inline-block;
 						white-space: nowrap;
 						overflow: hidden;
 						text-overflow: ellipsis;
 						max-width: 90%;
+					}
+
+					.expanded {
+						.content {
+							max-height: 500px;
+							white-space: break-spaces;
+						}
 					}
 				}
 			}
