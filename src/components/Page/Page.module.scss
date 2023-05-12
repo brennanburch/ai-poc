@@ -4,7 +4,6 @@
 	position: relative;
     background-position: center bottom;
     background-size: cover;
-    min-height: 80vh;
     display: flex;
     justify-content: center;
 
@@ -24,7 +23,7 @@
             &.verticalCenter {
                 display: flex;
                 flex-direction: column;
-                justify-content: center;
+                justify-content: start;
             }
         }
     }

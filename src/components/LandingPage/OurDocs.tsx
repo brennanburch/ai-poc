@@ -1,13 +1,12 @@
 import React from "react";
-import clsx from "clsx";
-import { useDropzone } from "react-dropzone";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFile } from "@fortawesome/free-solid-svg-icons";
 import { submitQuestion, uploadFiles, getNewSessionId, type Answer } from "@helpers/server.ts";
 import Page from "@components/Page";
-import Dropzone from "./Dropzone.tsx";
 import ResponseDisplay from "./ResponseDisplay.tsx";
 import styles from "./LandingPage.module.scss";
+import Checkbox from '@mui/material/Checkbox';
+
 
 
 
@@ -21,16 +20,14 @@ type FailedFile = {
 	reason: string;
 };
 
-function LandingPage() {
+function OurDocs() {
 	const [sessionId, setSessionId] = React.useState("");
 	const [question, setQuestion] = React.useState("");
-	const [uploadedFiles, setUploadedFiles] = React.useState<UploadedFile[]>([]);
-	const [failedFiles, setFailedFiles] = React.useState<FailedFile[]>([]);
+
 	const [errorMessage, setErrorMessage] = React.useState("");
 	const [response, setResponse] = React.useState<Answer>();
 	const [loading, setLoading] = React.useState(false);
-
-
+	const label = { inputProps: { 'aria-label': 'Checkbox' } };
 
 	/** Question submission */
 	const handleAskQuestion = async () => {
@@ -51,31 +48,7 @@ function LandingPage() {
 		setLoading(false);
 	};
 
-	const handleFileUpload = async (files: File[]) => {
-		setErrorMessage("");
-		setLoading(true);
 
-		const newUploadedFiles: UploadedFile[] = [];
-		const newFailedFiles: FailedFile[] = [];
-
-		await Promise.all(files.map(async (file) => {
-			try {
-				console.log(`Uploading file "${file.name}"`);
-				const { fileId } = await uploadFiles({ file, sessionId });
-
-				newUploadedFiles.push({ file, fileId });
-			} catch (_error: unknown) {
-				const error = _error as Error;
-
-				console.log(`Error uploading file "${file.name}":`, error);
-				newFailedFiles.push({ file, reason: error.message });
-			}
-		}));
-
-		setUploadedFiles([...uploadedFiles, ...newUploadedFiles]);
-		setFailedFiles([...failedFiles, ...newFailedFiles]);
-		setLoading(false);
-	};
 
 	React.useEffect(() => {
 		const handleKeyDown = async (event: KeyboardEvent) => {
@@ -107,10 +80,6 @@ function LandingPage() {
 		}
 	}, [sessionId]);
 
-	const { getRootProps, getInputProps } = useDropzone({
-		onDrop: handleFileUpload,
-		multiple: true,
-	});
 
 	return (
 		<Page
@@ -118,30 +87,37 @@ function LandingPage() {
 			contentBackgroundClass={styles.background}
 			contentPreferredWidth={1400}
 			contentClass={styles.pageContent}
-			
 		>
 			{/* HIDE OPENAI API KEY IN LOGO */}
 
 			<div className={styles.text}>
 				<div className={styles.workArea}>
 					<div className={styles.leftColumn}>
-						<h1>Get Started With PoeticAI</h1>
+						<h1>Chat With Our Docs</h1>
+						<h3>Select one of the documents below and ask us a question.</h3>
 
+						<div className={styles.cardContainer}>
+							<div className={styles.card}>
+							<Checkbox className={styles.card}{...label} />
 
-						{/* Get Started SECTION */}
-						<div
-							{...getRootProps()}
-							className={clsx(
-								styles.dropzone,
-								loading && styles.dropzoneLoading,
-							)}
-						>
-							<input {...getInputProps()} disabled={loading} />
 							<FontAwesomeIcon
 								icon={faFile}
 								className={styles.dropzoneIcon}
-							/>
-							<Dropzone isLoading={loading} />
+							/></div>
+							<div className={styles.card}>
+							<Checkbox className={styles.card} {...label} />
+
+							<FontAwesomeIcon
+								icon={faFile}
+								className={styles.dropzoneIcon}
+							/></div>
+							<div className={styles.card}>
+							<Checkbox className={styles.card} {...label} />
+
+							<FontAwesomeIcon
+								icon={faFile}
+								className={styles.dropzoneIcon}
+							/></div>
 						</div>
 
 
@@ -150,7 +126,7 @@ function LandingPage() {
 						<div className={styles.questionInput}>
 							<input
 								type="text"
-								placeholder="So, what's on your mind?"
+								placeholder="Ask a question about this document"
 								disabled={loading || !sessionId}
 								value={question}
 								onChange={(event) => setQuestion(event.target.value)}
@@ -174,4 +150,4 @@ function LandingPage() {
 	);
 }
 
-export default LandingPage;
+export default OurDocs;

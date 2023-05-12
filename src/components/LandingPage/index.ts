@@ -1,2 +1,2 @@
-export * from "./LandingPage.tsx";
-export { default } from "./LandingPage.tsx";
+export * from "./Main.tsx";
+export { default } from "./Main.tsx";

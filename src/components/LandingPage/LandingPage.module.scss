@@ -44,7 +44,8 @@ body {
 	font-style: normal;
 
 	&:hover {
-		background-color: common.$color-vault-blue;
+		background-color: common.$color-vault-black;
+		color: common.$color-vault-white;
 		font-weight: 700;
 	}
 }
@@ -55,36 +56,67 @@ body {
 
 	align-items: center;
 	padding-top: 20px;
-	width: 50%;
+	width: 70%;
 }
 .dropzoneIcon {
 
 	align-items: center;
-
+	padding-top: 5%;
 	height: 50px;
 }
-.horizontalContainer {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-}
+
 .setupSection {
 	height: 80vh;
 }
 .chatSection {
 	height: 80vh;
 }
+.CardContainer{
+	display: flex;
+	width: 60%;
+	height:auto;
+}
+.Card{
+
+	border-radius: 8px;
+	margin: 20px;
+	padding: 20px;
+	width: 100%;
+	height: auto;
+	text-align: center;
+	cursor: pointer;
+	font-size: 24px;
+	font-weight: 500;
+	background-color: common.$color-vault-white;
+	color: common.$color-vault-black;
+	transition: 300ms ease-in;
+	display: flex;
+	  align-items: center;
+	  justify-content: center;
+
+	&:hover {
+		background-color: common.$color-vault-blue-dark;
+		color: common.$color-vault-white;
+	}
+}
 
 .text {
 	color: common.$color-vault-black;
 	display: flex;
-
 	align-items: center;
 	width: 100%;
 
 	h1 {
 		font-size: 32px;
 		font-weight: 700;
+		margin-bottom: 20px;
+		font-family: "Urbanist", sans-serif;
+		font-style: normal;
+		text-align: center;
+	}
+	h3 {
+		font-size: 24px;
+		font-weight: 500;
 		margin-bottom: 30px;
 		font-family: "Urbanist", sans-serif;
 		font-style: normal;
@@ -103,28 +135,23 @@ body {
 		align-items: center;
 
 		.leftColumn {
-			display: inline-flex;
+			display: flex;
 			flex-direction: column;
 			align-items: center;
 			width: 100%;
 			height: auto;
+
 		}
 
-		.rightColumn {
-			display: flex;
 
-			align-items: center;
-			width: 100%;
-			height: 100vh;
-		}
 
 		.dropzone {
-			border: 2px dashed common.$color-vault-blue;
+			border: 1px dashed common.$color-vault-white;
 			border-radius: 8px;
 			margin-top: 20px;
 			padding: 20px;
 			width: 100%;
-			height: 400px;
+			height: 300px;
 			text-align: center;
 			cursor: pointer;
 			font-size: 24px;
@@ -205,6 +232,8 @@ body {
 				font-size: 14px;
 				font-weight: 400;
 				transition: background-color 100ms;
+				font-family: "Urbanist", sans-serif;
+				font-weight: 300;
 
 				&:hover {
 					background-color: common.$color-vault-blue-dark;
