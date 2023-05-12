@@ -73,6 +73,8 @@ body {
 }
 .CardContainer{
 	display: flex;
+	flex-direction: row !important;
+	justify-content: center;
 	width: 60%;
 	height:auto;
 }
@@ -81,7 +83,7 @@ body {
 	border-radius: 8px;
 	margin: 20px;
 	padding: 20px;
-	width: 100%;
+	width: 25%;
 	height: auto;
 	text-align: center;
 	cursor: pointer;

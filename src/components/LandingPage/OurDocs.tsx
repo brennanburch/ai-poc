@@ -1,33 +1,28 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFile } from "@fortawesome/free-solid-svg-icons";
-import { submitQuestion, uploadFiles, getNewSessionId, type Answer } from "@helpers/server.ts";
+import FormGroup from "@mui/material/FormGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
+import { submitQuestionForDocs, type Answer } from "@helpers/server.ts";
 import Page from "@components/Page";
 import ResponseDisplay from "./ResponseDisplay.tsx";
 import styles from "./LandingPage.module.scss";
-import Checkbox from '@mui/material/Checkbox';
-
-
-
-
-export type UploadedFile = {
-	file: File;
-	fileId: string;
-};
-
-type FailedFile = {
-	file: File;
-	reason: string;
-};
 
 function OurDocs() {
-	const [sessionId, setSessionId] = React.useState("");
 	const [question, setQuestion] = React.useState("");
-
+	const [doc1Selected, setDoc1Selected] = React.useState(true);
+	const [doc2Selected, setDoc2Selected] = React.useState(false);
+	const [doc3Selected, setDoc3Selected] = React.useState(false);
 	const [errorMessage, setErrorMessage] = React.useState("");
 	const [response, setResponse] = React.useState<Answer>();
 	const [loading, setLoading] = React.useState(false);
-	const label = { inputProps: { 'aria-label': 'Checkbox' } };
+
+	const noDocumentsSelected = () => !doc1Selected && !doc2Selected && !doc3Selected;
+
+	const doc1 = "Customer-Rights.pdf";
+	const doc2 = "PMA-FAQ.pdf";
+	const doc3 = "Tickets-Museo-Del-Prado.pdf";
 
 	/** Question submission */
 	const handleAskQuestion = async () => {
@@ -35,7 +30,15 @@ function OurDocs() {
 		console.log(`Asking question: ${question}`);
 
 		try {
-			const response = await submitQuestion({ question, sessionId });
+			const selectedDocuments = [
+				doc1Selected && doc1,
+				doc2Selected && doc2,
+				doc3Selected && doc3,
+			].filter(Boolean) as string[];
+
+			console.log(selectedDocuments);
+
+			const response = await submitQuestionForDocs({ question, documents: selectedDocuments });
 
 			setResponse(response);
 		} catch (error: unknown) {
@@ -47,8 +50,6 @@ function OurDocs() {
 
 		setLoading(false);
 	};
-
-
 
 	React.useEffect(() => {
 		const handleKeyDown = async (event: KeyboardEvent) => {
@@ -63,23 +64,6 @@ function OurDocs() {
 			document.removeEventListener("keydown", handleKeyDown);
 		};
 	}, [loading, question]);
-
-	React.useEffect(() => {
-		const handleGetNewSessionId = async () => {
-			setLoading(true);
-
-			const { sessionId: newSessionId } = await getNewSessionId();
-			setSessionId(newSessionId);
-
-			console.log("Started new session:", newSessionId);
-			setLoading(false);
-		};
-
-		if (!sessionId) {
-			void handleGetNewSessionId();
-		}
-	}, [sessionId]);
-
 
 	return (
 		<Page
@@ -96,53 +80,83 @@ function OurDocs() {
 						<h1>Chat With Our Docs</h1>
 						<h3>Select one of the documents below and ask us a question.</h3>
 
-						<div className={styles.cardContainer}>
-							<div className={styles.card}>
-							<Checkbox className={styles.card}{...label} />
-
-							<FontAwesomeIcon
-								icon={faFile}
-								className={styles.dropzoneIcon}
-							/></div>
-							<div className={styles.card}>
-							<Checkbox className={styles.card} {...label} />
-
-							<FontAwesomeIcon
-								icon={faFile}
-								className={styles.dropzoneIcon}
-							/></div>
-							<div className={styles.card}>
-							<Checkbox className={styles.card} {...label} />
-
-							<FontAwesomeIcon
-								icon={faFile}
-								className={styles.dropzoneIcon}
-							/></div>
-						</div>
-
-
-						{response && <ResponseDisplay response={response} />}
+						<FormGroup className={styles.cardContainer}>
+							<FormControlLabel
+								className={styles.card}
+								label={doc1}
+								labelPlacement="bottom"
+								control={
+									<span>
+										<Checkbox
+											inputProps={{ "aria-label": `Checkbox ${doc1}` }}
+											checked={doc1Selected}
+											onChange={(event) => setDoc1Selected(event.target.checked)}
+										/>
+										<FontAwesomeIcon
+											icon={faFile}
+											className={styles.dropzoneIcon}
+										/>
+									</span>
+								}
+							/>
+							<FormControlLabel
+								className={styles.card}
+								label={doc2}
+								labelPlacement="bottom"
+								control={
+									<span>
+										<Checkbox
+											inputProps={{ "aria-label": `Checkbox ${doc2}` }}
+											checked={doc2Selected}
+											onChange={(event) => setDoc2Selected(event.target.checked)}
+										/>
+										<FontAwesomeIcon
+											icon={faFile}
+											className={styles.dropzoneIcon}
+										/>
+									</span>
+								}
+							/>
+							<FormControlLabel
+								className={styles.card}
+								label={doc3}
+								labelPlacement="bottom"
+								control={
+									<span>
+										<Checkbox
+											inputProps={{ "aria-label": `Checkbox ${doc3}` }}
+											checked={doc3Selected}
+											onChange={(event) => setDoc3Selected(event.target.checked)}
+										/>
+										<FontAwesomeIcon
+											icon={faFile}
+											className={styles.dropzoneIcon}
+										/>
+									</span>
+								}
+							/>
+						</FormGroup>
 
 						<div className={styles.questionInput}>
 							<input
 								type="text"
 								placeholder="Ask a question about this document"
-								disabled={loading || !sessionId}
+								disabled={loading || noDocumentsSelected()}
 								value={question}
 								onChange={(event) => setQuestion(event.target.value)}
 							/>
 							<button
 								type="submit"
-								disabled={loading || !question || !sessionId}
+								disabled={loading || !question || noDocumentsSelected()}
 								className={styles.askQuestion}
 								onClick={handleAskQuestion}
 							>
 								Submit
 							</button>
 							{loading && <div className={styles.loader} />}
-
-
 						</div>
+
+						{response && <ResponseDisplay response={response} />}
 					</div>
 				</div>
 			</div>

@@ -9,8 +9,6 @@ import Dropzone from "./Dropzone.tsx";
 import ResponseDisplay from "./ResponseDisplay.tsx";
 import styles from "./LandingPage.module.scss";
 
-
-
 export type UploadedFile = {
 	file: File;
 	fileId: string;
@@ -29,8 +27,6 @@ function LandingPage() {
 	const [errorMessage, setErrorMessage] = React.useState("");
 	const [response, setResponse] = React.useState<Answer>();
 	const [loading, setLoading] = React.useState(false);
-
-
 
 	/** Question submission */
 	const handleAskQuestion = async () => {
@@ -118,7 +114,7 @@ function LandingPage() {
 			contentBackgroundClass={styles.background}
 			contentPreferredWidth={1400}
 			contentClass={styles.pageContent}
-			
+
 		>
 			{/* HIDE OPENAI API KEY IN LOGO */}
 
@@ -126,7 +122,6 @@ function LandingPage() {
 				<div className={styles.workArea}>
 					<div className={styles.leftColumn}>
 						<h1>Get Started With PoeticAI</h1>
-
 
 						{/* Get Started SECTION */}
 						<div
@@ -143,9 +138,6 @@ function LandingPage() {
 							/>
 							<Dropzone isLoading={loading} />
 						</div>
-
-
-						{response && <ResponseDisplay response={response} />}
 
 						<div className={styles.questionInput}>
 							<input
@@ -164,9 +156,9 @@ function LandingPage() {
 								Submit
 							</button>
 							{loading && <div className={styles.loader} />}
-
-
 						</div>
+
+						{response && <ResponseDisplay response={response} />}
 					</div>
 				</div>
 			</div>

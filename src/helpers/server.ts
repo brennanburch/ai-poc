@@ -1,7 +1,11 @@
 import _ky from "ky";
 import { serialize as formData } from "object-to-formdata";
 
+const localUrl = "http://localhost:3000";
+const prodUrl = "https://ai-poc-server.onrender.com";
+
 const ky = _ky.extend({
+	prefixUrl: prodUrl,
 	headers: {
 		// eslint-disable-next-line @typescript-eslint/naming-convention
 		Authorization: `Basic ${btoa(":lxis3000")}`,
@@ -16,7 +20,7 @@ type SessionId = {
 };
 
 export const getNewSessionId = async (): Promise<SessionId> => (
-	ky.get("https://ai-poc-server.onrender.com/docs/start-session").json()
+	ky.get("docs/start-session").json()
 );
 
 type QuestionInput = {
@@ -37,8 +41,21 @@ export type Answer = {
 
 export const submitQuestion = async ({ question, sessionId }: QuestionInput): Promise<Answer> => (ky
 	.post(
-		"https://ai-poc-server.onrender.com/docs/chat",
+		"docs/chat",
 		{ json: { message: question, sessionId }, timeout },
+	)
+	.json()
+);
+
+type QuestionForDocsInput = {
+	question: string;
+	documents: string[];
+};
+
+export const submitQuestionForDocs = async ({ question, documents }: QuestionForDocsInput): Promise<Answer> => (ky
+	.post(
+		"docs/chat-curated",
+		{ json: { message: question, documents }, timeout },
 	)
 	.json()
 );
@@ -55,7 +72,7 @@ export type UploadResponse = {
 
 export const uploadFiles = async ({ file, sessionId }: UploadInput): Promise<UploadResponse> => (ky
 	.post(
-		"https://ai-poc-server.onrender.com/docs/upload",
+		"docs/upload",
 		{ body: formData({ file, sessionId }), timeout },
 	)
 	.json()
