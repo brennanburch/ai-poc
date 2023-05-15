@@ -14,17 +14,18 @@ function ContextSnippet({ context: { name: fileName, content: fileContent }, num
 	const toggleCollapse = () => {
 		setCollapsed(!collapsed);
 	};
+	
 
 	return (
 		<div className={styles.contextSnippet}>
-			<h4 onClick={toggleCollapse}>
+			<h5 onClick={toggleCollapse}>
 				Context {number}
 				<label className={styles.title}>
 					{fileName}
 					<span className={styles.arrow}>{collapsed ? "▼" : "▲"}</span>
 
 				</label>
-			</h4>
+			</h5>
 			<div className={collapsed ? styles.collapsed : styles.expanded}>
 				<p className={collapsed ? styles.preview : styles.content}>
 					{fileContent}

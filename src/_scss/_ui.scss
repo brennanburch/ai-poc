@@ -50,7 +50,7 @@
 	margin: 0px;
 
 	@if $disabled {
-		background-color: grey;
+		background-color: rgb(144, 52, 167);
 		color: lightgrey;
 		pointer-events: none;
 	} @else {

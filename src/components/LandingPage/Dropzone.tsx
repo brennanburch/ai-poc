@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./LandingPage.module.scss";
 
 const breakpoint = 769;
-const loadingText = "Loading...";
+const loadingText = "AI processing document. Please wait...";
 
 type ContextSnippetProps = {
 	isLoading: boolean;

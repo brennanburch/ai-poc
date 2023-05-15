@@ -72,24 +72,23 @@ body {
 	height: 80vh;
 }
 .CardContainer{
+	margin-top: 100px;
 	display: flex;
-	flex-direction: row !important;
-	justify-content: center;
-	width: 60%;
-	height:auto;
+	flex-direction: column;
+	align-items:flex-end;
+	width: 100%;
+	height:300px;
 }
 .Card{
 
 	border-radius: 8px;
 	margin: 20px;
 	padding: 20px;
-	width: 25%;
-	height: auto;
+
 	text-align: center;
 	cursor: pointer;
 	font-size: 24px;
 	font-weight: 500;
-	background-color: common.$color-vault-white;
 	color: common.$color-vault-black;
 	transition: 300ms ease-in;
 	display: flex;
@@ -124,9 +123,15 @@ body {
 		font-style: normal;
 		text-align: center;
 	}
+	h5 {
+		width:auto;
+		text-align: center;
+		padding: 20px;
+	}
 
 	.error {
-		color: common.$color-vault-purple;
+		background-color: common.$color-vault-purple;;
+		color: common.$color-vault-white;
 		margin-top: 24px;
 	}
 
@@ -135,8 +140,10 @@ body {
 		width: 100%;
 		height: auto;
 		align-items: center;
+		flex-direction: column;
 
-		.leftColumn {
+
+		.mainColumn {
 			display: flex;
 			flex-direction: column;
 			align-items: center;
@@ -144,13 +151,55 @@ body {
 			height: auto;
 
 		}
+		.horizontalContainer{
+			display: flex;
+			flex-direction: row;
+			height:80vh;
+			width:100%;
+			border-radius: 8px;
+			background-color: common.$color-vault-lightgray;
+		}
+
+		.leftColumn {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			width: 30%;
+			height: auto;
+			background-color: common.$color-vault-background-dark-grey;
+			color: common.$color-vault-white;
+
+			border-radius: 8px 0px 0px 8px;
+			text-align: center;
+			justify-content: center;
+
+		}
+		.rightColumn {
+			display: flex;
+			flex-direction: column;
+			text-align: center;
+			justify-content: center;
+			align-items: center;
+			padding: 20px;
+			width: 70%;
+			height: auto;
+
+		}
+		.contextColumn {
+			display: flex;
+			flex-direction: column;
+			width: 80%;
+			height: auto;
+
+		}
+
 
 
 
 		.dropzone {
-			border: 1px dashed common.$color-vault-white;
-			border-radius: 8px;
-			margin-top: 20px;
+
+			border-radius:8px ;
+			margin: 20px;
 			padding: 20px;
 			width: 100%;
 			height: 300px;
@@ -246,7 +295,7 @@ body {
 				background-color: common.$color-vault-black;
 
 				&:disabled {
-					background-color: common.$color-vault-gray;
+					background-color: common.$color-vault-purple;
 					cursor: inherit;
 				}
 			}
@@ -269,11 +318,11 @@ body {
 			.answer {
 				margin-top: 24px;
 				margin-bottom: 16px;
-				font-size: 24px;
+				font-size: 14px;
 			}
 
 			.contexts {
-				margin-bottom: 64px;
+				margin: 16px;
 
 				.contextSnippet {
 					margin-bottom: 16px;
@@ -282,7 +331,8 @@ body {
 						cursor: pointer;
 						display: flex;
 						align-items: center;
-						color: common.$color-vault-black;
+						color: common.$color-vault-white;
+						font-size: 20px;
 						font-weight: 400;
 						padding-top: 30px;
 

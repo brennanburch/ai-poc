@@ -76,10 +76,16 @@ function OurDocs() {
 
 			<div className={styles.text}>
 				<div className={styles.workArea}>
-					<div className={styles.leftColumn}>
-						<h1>Chat With Our Docs</h1>
+				<h1>Chat With Our Docs</h1>
 						<h3>Select one of the documents below and ask us a question.</h3>
+					<div className={styles.horizontalContainer}>
 
+					<div className={styles.leftColumn}>Left
+					<div className={styles.contextColumn}>
+						{response && <ResponseDisplay response={response} />}
+						</div>
+						</div>
+						<div className={styles.rightColumn}>
 						<FormGroup className={styles.cardContainer}>
 							<FormControlLabel
 								className={styles.card}
@@ -156,7 +162,8 @@ function OurDocs() {
 							{loading && <div className={styles.loader} />}
 						</div>
 
-						{response && <ResponseDisplay response={response} />}
+						
+					</div>
 					</div>
 				</div>
 			</div>
