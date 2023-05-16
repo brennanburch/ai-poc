@@ -68,6 +68,7 @@ type UploadInput = {
 export type UploadResponse = {
 	message: string;
 	fileId: string;
+	summary: string;
 };
 
 export const uploadFiles = async ({ file, sessionId }: UploadInput): Promise<UploadResponse> => (ky
