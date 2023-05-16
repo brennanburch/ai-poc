@@ -11,7 +11,7 @@ type ResponseDisplayProps = {
 function ResponseDisplay({ response }: ResponseDisplayProps) {
 	return (
 		<div className={styles.responseDisplay}>
-			<div className={styles.answer}>{response.answer}</div>
+			<div className={styles.answer}>Answer: {response.answer}</div>
 			<div className={styles.contexts}>
 				{response.context.map((context, index) => (
 					<ContextSnippet key={index} context={context} number={index + 1 } />
