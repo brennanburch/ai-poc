@@ -145,7 +145,11 @@ function LandingPage() {
 									className={styles.dropzoneIcon}
 								/>
 								<Dropzone isLoading={loading} name={name} isSessionStarted={Boolean(sessionId)} />
+
 							</div>
+							{uploadedFiles.map(({ file: { name }, fileId, summary }, i) => (
+								<Summary key={fileId} number={i} fileName={name} summary={summary} />
+							))}
 
 							<div className={styles.questionInput}>
 								<input
@@ -166,9 +170,7 @@ function LandingPage() {
 								{loading && <div className={styles.loader} />}
 							</div>
 
-							{uploadedFiles.map(({ file: { name }, fileId, summary }, i) => (
-								<Summary key={fileId} number={i} fileName={name} summary={summary} />
-							))}
+
 
 							<div className={styles.contextColumn}>
 								{response && <ResponseDisplay response={response} />}

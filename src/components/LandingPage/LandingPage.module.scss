@@ -99,6 +99,10 @@ body {
 
 }
 
+.successText{
+	font-weight:500, !important;
+}
+
 
 .text {
 	color: common.$color-vault-black;
@@ -199,6 +203,23 @@ body {
 			height: auto;
 
 		}
+		.summaryColumn {
+			margin-top:-10px;
+			border-radius: 0px 0px 8px 8px;
+			font-weight: bold;
+			padding:10px;
+			display: flex;
+			flex-direction: column;
+			width: 100%;
+			height: auto;
+			background-color: common.$color-vault-green;
+			color: common.$color-vault-white;
+			justify-content: center;
+			text-align: center;
+
+			
+
+		}
 
 
 
@@ -206,7 +227,6 @@ body {
 		.dropzone {
 
 			border-radius:8px ;
-			margin: 20px;
 			padding: 20px;
 			width: 100%;
 			height: 300px;

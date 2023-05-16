@@ -9,9 +9,10 @@ type SummaryProps = {
 
 function Summary({ number, fileName, summary }: SummaryProps) {
 	return (
-		<div className={styles.horizontalContainer}>
-			<span>{`${number}. ${fileName}`}</span>
-			<p>Summary: {summary}</p>
+		<div className={styles.summaryColumn}>
+			<span className={styles.successText}>{`${number + 1}. ${fileName}`} </span>
+			Summary: {summary}
+
 		</div>
 	);
 }
