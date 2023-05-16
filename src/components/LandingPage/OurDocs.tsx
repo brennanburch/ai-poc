@@ -150,7 +150,7 @@ function OurDocs() {
 						<div className={styles.questionInput}>
 							<input
 								type="text"
-								placeholder="Ask a question about this document"
+								placeholder="Ask a question..."
 								disabled={loading || noDocumentsSelected()}
 								value={question}
 								onChange={(event) => setQuestion(event.target.value)}
