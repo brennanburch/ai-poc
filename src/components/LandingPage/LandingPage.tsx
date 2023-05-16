@@ -29,6 +29,7 @@ function LandingPage() {
 	const [errorMessage, setErrorMessage] = React.useState("");
 	const [response, setResponse] = React.useState<Answer>();
 	const [loading, setLoading] = React.useState(false);
+	const breakpoint = 769;
 
 
 
@@ -127,16 +128,9 @@ function LandingPage() {
 				<div className={styles.workArea}>
 				<h1>Poetic AI Playground Chat</h1>
 				<div className={styles.horizontalContainer}>
-				<div className={styles.leftColumn}>left
-				<div className={styles.contextColumn}>
-						{response && <ResponseDisplay response={response} />}
-						</div>
-				</div>
+
 					<div className={styles.rightColumn}>
 
-
-
-						{/* Get Started SECTION */}
 						<div
 							{...getRootProps()}
 							className={clsx(
@@ -153,7 +147,9 @@ function LandingPage() {
 						</div>
 
 
-
+						<div className={styles.contextColumn}>
+						{response && <ResponseDisplay response={response} />}
+						</div>
 
 						<div className={styles.questionInput}>
 							<input

@@ -14,23 +14,23 @@ function ContextSnippet({ context: { name: fileName, content: fileContent }, num
 	const toggleCollapse = () => {
 		setCollapsed(!collapsed);
 	};
-	
+
 
 	return (
 		<div className={styles.contextSnippet}>
-			<h5 onClick={toggleCollapse}>
+			<h6 onClick={toggleCollapse}>
 				Context {number}
 				<label className={styles.title}>
 					{fileName}
 					<span className={styles.arrow}>{collapsed ? "▼" : "▲"}</span>
-
-				</label>
-			</h5>
-			<div className={collapsed ? styles.collapsed : styles.expanded}>
+					<div className={collapsed ? styles.collapsed : styles.expanded}>
 				<p className={collapsed ? styles.preview : styles.content}>
 					{fileContent}
 				</p>
 			</div>
+				</label>
+			</h6>
+
 		</div>
 	);
 }

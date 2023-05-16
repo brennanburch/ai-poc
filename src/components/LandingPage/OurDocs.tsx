@@ -11,7 +11,7 @@ import styles from "./LandingPage.module.scss";
 
 function OurDocs() {
 	const [question, setQuestion] = React.useState("");
-	const [doc1Selected, setDoc1Selected] = React.useState(true);
+	const [doc1Selected, setDoc1Selected] = React.useState(false);
 	const [doc2Selected, setDoc2Selected] = React.useState(false);
 	const [doc3Selected, setDoc3Selected] = React.useState(false);
 	const [errorMessage, setErrorMessage] = React.useState("");
@@ -76,15 +76,15 @@ function OurDocs() {
 
 			<div className={styles.text}>
 				<div className={styles.workArea}>
-				<h1>Chat With Our Docs</h1>
-						<h3>Select one of the documents below and ask us a question.</h3>
-					<div className={styles.horizontalContainer}>
+				<h1>Chat With These Famous Docs</h1>
+				<h4>This simple example is just a taste of how Generative AI can be used to interact with your
+						business's document collection to Classify, Detect, Analyze, Automate, and Revolutionize your
+						business's data flow or documents. Schedule some time with Poetic to understand how we can
+						transform your business processes and workshop an AI Based Transformation.
+					</h4>
 
-					<div className={styles.leftColumn}>Left
-					<div className={styles.contextColumn}>
-						{response && <ResponseDisplay response={response} />}
-						</div>
-						</div>
+
+						<div className={styles.horizontalContainer}>
 						<div className={styles.rightColumn}>
 						<FormGroup className={styles.cardContainer}>
 							<FormControlLabel
@@ -142,6 +142,10 @@ function OurDocs() {
 								}
 							/>
 						</FormGroup>
+						<div className={styles.contextColumn}>
+						{response && <ResponseDisplay response={response} />}
+						</div>
+
 
 						<div className={styles.questionInput}>
 							<input
@@ -161,12 +165,12 @@ function OurDocs() {
 							</button>
 							{loading && <div className={styles.loader} />}
 						</div>
+					</div>
+					</div>
+					</div>
 
-						
-					</div>
-					</div>
 				</div>
-			</div>
+
 		</Page>
 	);
 }

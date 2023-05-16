@@ -1,16 +1,18 @@
 import React from "react";
 import styles from "./LandingPage.module.scss";
+import type { Context } from "@helpers/server.ts";
 
 const breakpoint = 769;
 const loadingText = "AI processing document. Please wait...";
 
 type ContextSnippetProps = {
+
 	isLoading: boolean;
+
 };
 
 function Dropzone({ isLoading }: ContextSnippetProps) {
 	const [width, setWidth] = React.useState(window.innerWidth);
-
 	React.useEffect(() => {
 		const handleWindowResize = () => setWidth(window.innerWidth);
 		window.addEventListener("resize", handleWindowResize);
@@ -25,6 +27,7 @@ function Dropzone({ isLoading }: ContextSnippetProps) {
 				{isLoading
 					? loadingText
 					: "Tap to select files to add to the knowledge base"}
+
 			</p>
 		);
 	}
@@ -34,6 +37,7 @@ function Dropzone({ isLoading }: ContextSnippetProps) {
 			{isLoading
 				? loadingText
 				: "Drag and drop files to add to the knowledge base, or click to select files"}
+
 		</p>
 	);
 }

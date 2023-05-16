@@ -17,7 +17,7 @@ body {
 }
 
 .page {
-	padding-top: 92px;
+	padding-top: 20px;
 	min-height: 780px;
 	align-content: center;
 }
@@ -72,19 +72,20 @@ body {
 	height: 80vh;
 }
 .CardContainer{
-	margin-top: 100px;
-	display: flex;
-	flex-direction: column;
-	align-items:flex-end;
+	margin-top: 20px;
+	display: grid;
+    grid-template-columns: 3fr;
+    padding: 1em;
+    grid-row-gap: 10px;
+	align-items:center;
 	width: 100%;
-	height:300px;
+	height:200px;
+	font-weight: 700!important;
 }
-.Card{
+.card{
 
 	border-radius: 8px;
-	margin: 20px;
-	padding: 20px;
-
+	margin: 10px;
 	text-align: center;
 	cursor: pointer;
 	font-size: 24px;
@@ -99,18 +100,20 @@ body {
 		background-color: common.$color-vault-blue-dark;
 		color: common.$color-vault-white;
 	}
+
 }
+
 
 .text {
 	color: common.$color-vault-black;
-	display: flex;
+	display: block;
 	align-items: center;
 	width: 100%;
 
 	h1 {
 		font-size: 32px;
 		font-weight: 700;
-		margin-bottom: 20px;
+		margin-bottom: 10px;
 		font-family: "Urbanist", sans-serif;
 		font-style: normal;
 		text-align: center;
@@ -122,6 +125,15 @@ body {
 		font-family: "Urbanist", sans-serif;
 		font-style: normal;
 		text-align: center;
+	}
+	h4 {
+		font-size: 16px;
+		font-weight: 500;
+		margin-bottom: 30px;
+		font-family: "Urbanist", sans-serif;
+		font-style: normal;
+		text-align: center;
+		width: 70%;
 	}
 	h5 {
 		width:auto;
@@ -153,11 +165,12 @@ body {
 		}
 		.horizontalContainer{
 			display: flex;
+			border: 2px solid common.$color-vault-black;
 			flex-direction: row;
-			height:80vh;
+			height:auto;
 			width:100%;
 			border-radius: 8px;
-			background-color: common.$color-vault-lightgray;
+			background-color: common.$color-vault-white;
 		}
 
 		.leftColumn {
@@ -168,8 +181,6 @@ body {
 			height: auto;
 			background-color: common.$color-vault-background-dark-grey;
 			color: common.$color-vault-white;
-
-			border-radius: 8px 0px 0px 8px;
 			text-align: center;
 			justify-content: center;
 
@@ -181,7 +192,7 @@ body {
 			justify-content: center;
 			align-items: center;
 			padding: 20px;
-			width: 70%;
+			width: 100%;
 			height: auto;
 
 		}
@@ -295,7 +306,7 @@ body {
 				background-color: common.$color-vault-black;
 
 				&:disabled {
-					background-color: common.$color-vault-purple;
+					background-color: common.$color-vault-gray;
 					cursor: inherit;
 				}
 			}
@@ -309,7 +320,8 @@ body {
 		}
 
 		.responseDisplay {
-			width: 100%;
+			width: 85%;
+			margin: auto;
 
 			h3 {
 				margin-block-start: 0;
@@ -319,13 +331,21 @@ body {
 				margin-top: 24px;
 				margin-bottom: 16px;
 				font-size: 14px;
+
 			}
 
 			.contexts {
 				margin: 16px;
 
+
 				.contextSnippet {
 					margin-bottom: 16px;
+					border: 2px solid;
+					border-radius: 4px;
+					display: flex;
+					flex-direction: column;
+					width:auto;
+
 
 					h4 {
 						cursor: pointer;
@@ -344,12 +364,15 @@ body {
 							border-radius: 14px;
 							display: flex;
 							align-items: center;
+							padding-right: 10px;
+
 
 							.arrow {
 								margin-left: 14px;
 								font-stretch: expanded;
 								font-size: 14px;
 								transform: scaleY(0.75);
+								padding-left: 10px;
 							}
 						}
 
@@ -374,7 +397,7 @@ body {
 						white-space: nowrap;
 						overflow: hidden;
 						text-overflow: ellipsis;
-						max-width: 90%;
+						max-width: 50%;
 					}
 
 					.expanded {
@@ -436,3 +459,27 @@ h3 {
 		background-color: common.$color-vault-gray;
 	}
 }
+
+@media screen and (max-width: 425px) {
+	.CardContainer{
+		margin-top: 20px;
+		display: grid;
+		grid-template-columns: 1fr!important;
+		padding: 1em;
+		grid-row-gap: 10px;
+		align-items:center;
+		width: 100%;
+		height:auto;
+		font-weight: 700!important;
+	}
+	.horizontalContainer{
+		display: flex;
+		border: 2px solid common.$color-vault-black;
+		flex-direction: column;
+		height:auto;
+		width:100%;
+		border-radius: 8px;
+		background-color: common.$color-vault-white;
+	}
+}
+
