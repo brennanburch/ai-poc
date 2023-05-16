@@ -29,7 +29,8 @@ function LandingPage() {
 	const [errorMessage, setErrorMessage] = React.useState("");
 	const [response, setResponse] = React.useState<Answer>();
 	const [loading, setLoading] = React.useState(false);
-	const breakpoint = 769;
+	const [name, setName] = React.useState("");
+
 
 
 
@@ -55,6 +56,7 @@ function LandingPage() {
 	const handleFileUpload = async (files: File[]) => {
 		setErrorMessage("");
 		setLoading(true);
+		setName(files.map((file) => file.name).join(", "));
 
 		const newUploadedFiles: UploadedFile[] = [];
 		const newFailedFiles: FailedFile[] = [];
@@ -76,6 +78,7 @@ function LandingPage() {
 		setUploadedFiles([...uploadedFiles, ...newUploadedFiles]);
 		setFailedFiles([...failedFiles, ...newFailedFiles]);
 		setLoading(false);
+		setName("");
 	};
 
 	React.useEffect(() => {
@@ -143,7 +146,7 @@ function LandingPage() {
 								icon={faFile}
 								className={styles.dropzoneIcon}
 							/>
-							<Dropzone isLoading={loading} />
+							<Dropzone isLoading={loading} name={name} />
 						</div>
 
 
