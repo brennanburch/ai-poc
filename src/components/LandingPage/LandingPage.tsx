@@ -8,12 +8,12 @@ import Page from "@components/Page";
 import Dropzone from "./Dropzone.tsx";
 import ResponseDisplay from "./ResponseDisplay.tsx";
 import styles from "./LandingPage.module.scss";
-
-
+import Summary from "./Summary.tsx";
 
 export type UploadedFile = {
 	file: File;
 	fileId: string;
+	summary: string;
 };
 
 type FailedFile = {
@@ -30,9 +30,6 @@ function LandingPage() {
 	const [response, setResponse] = React.useState<Answer>();
 	const [loading, setLoading] = React.useState(false);
 	const [name, setName] = React.useState("");
-
-
-
 
 	/** Question submission */
 	const handleAskQuestion = async () => {
@@ -64,9 +61,10 @@ function LandingPage() {
 		await Promise.all(files.map(async (file) => {
 			try {
 				console.log(`Uploading file "${file.name}"`);
-				const { fileId } = await uploadFiles({ file, sessionId });
+				const { fileId, summary } = await uploadFiles({ file, sessionId });
+				console.log(`"${file.name}" summary:`, summary);
 
-				newUploadedFiles.push({ file, fileId });
+				newUploadedFiles.push({ file, fileId, summary });
 			} catch (_error: unknown) {
 				const error = _error as Error;
 
@@ -129,55 +127,55 @@ function LandingPage() {
 			<div className={styles.text}>
 
 				<div className={styles.workArea}>
-				<h1>Poetic AI Playground Chat</h1>
-				<div className={styles.horizontalContainer}>
+					<h1>Poetic AI Playground Chat</h1>
+					<div className={styles.horizontalContainer}>
 
-					<div className={styles.rightColumn}>
+						<div className={styles.rightColumn}>
 
-						<div
-							{...getRootProps()}
-							className={clsx(
-								styles.dropzone,
-								loading && styles.dropzoneLoading,
-							)}
-						>
-							<input {...getInputProps()} disabled={loading} />
-							<FontAwesomeIcon
-								icon={faFile}
-								className={styles.dropzoneIcon}
-							/>
-							<Dropzone isLoading={loading} name={name} />
-						</div>
-
-
-						<div className={styles.contextColumn}>
-						{response && <ResponseDisplay response={response} />}
-						</div>
-
-						<div className={styles.questionInput}>
-							<input
-								type="text"
-								placeholder="So, what's on your mind?"
-								disabled={loading || !sessionId}
-								value={question}
-								onChange={(event) => setQuestion(event.target.value)}
-							/>
-							<button
-								type="submit"
-								disabled={loading || !question || !sessionId}
-								className={styles.askQuestion}
-								onClick={handleAskQuestion}
+							<div
+								{...getRootProps()}
+								className={clsx(
+									styles.dropzone,
+									loading && styles.dropzoneLoading,
+								)}
 							>
-								Submit
-							</button>
-							{loading && <div className={styles.loader} />}
+								<input {...getInputProps()} disabled={loading} />
+								<FontAwesomeIcon
+									icon={faFile}
+									className={styles.dropzoneIcon}
+								/>
+								<Dropzone isLoading={loading} name={name} isSessionStarted={Boolean(sessionId)} />
+							</div>
 
+							<div className={styles.questionInput}>
+								<input
+									type="text"
+									placeholder="So, what's on your mind?"
+									disabled={loading || !sessionId}
+									value={question}
+									onChange={(event) => setQuestion(event.target.value)}
+								/>
+								<button
+									type="submit"
+									disabled={loading || !question || !sessionId}
+									className={styles.askQuestion}
+									onClick={handleAskQuestion}
+								>
+									Submit
+								</button>
+								{loading && <div className={styles.loader} />}
+							</div>
 
+							{uploadedFiles.map(({ file: { name }, fileId, summary }, i) => (
+								<Summary key={fileId} number={i} fileName={name} summary={summary} />
+							))}
+
+							<div className={styles.contextColumn}>
+								{response && <ResponseDisplay response={response} />}
+							</div>
 						</div>
-
 					</div>
 				</div>
-			</div>
 			</div>
 		</Page>
 	);

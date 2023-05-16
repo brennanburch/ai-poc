@@ -36,8 +36,6 @@ function OurDocs() {
 				doc3Selected && doc3,
 			].filter(Boolean) as string[];
 
-			console.log(selectedDocuments);
-
 			const response = await submitQuestionForDocs({ question, documents: selectedDocuments });
 
 			setResponse(response);
@@ -72,105 +70,101 @@ function OurDocs() {
 			contentPreferredWidth={1400}
 			contentClass={styles.pageContent}
 		>
-			{/* HIDE OPENAI API KEY IN LOGO */}
-
 			<div className={styles.text}>
 				<div className={styles.workArea}>
-				<h1>Chat With These Famous Docs</h1>
-				<h4>This simple example is just a taste of how Generative AI can be used to interact with your
+					<h1>Chat With These Famous Docs</h1>
+					<h4>This simple example is just a taste of how Generative AI can be used to interact with your
 						business's document collection to Classify, Detect, Analyze, Automate, and Revolutionize your
 						business's data flow or documents. Schedule some time with Poetic to understand how we can
 						transform your business processes and workshop an AI Based Transformation.
 					</h4>
 
-
-						<div className={styles.horizontalContainer}>
+					<div className={styles.horizontalContainer}>
 						<div className={styles.rightColumn}>
-						<FormGroup className={styles.cardContainer}>
-							<FormControlLabel
-								className={styles.card}
-								label={doc1}
-								labelPlacement="bottom"
-								control={
-									<span>
-										<Checkbox
-											inputProps={{ "aria-label": `Checkbox ${doc1}` }}
-											checked={doc1Selected}
-											onChange={(event) => setDoc1Selected(event.target.checked)}
-										/>
-										<FontAwesomeIcon
-											icon={faFile}
-											className={styles.dropzoneIcon}
-										/>
-									</span>
-								}
-							/>
-							<FormControlLabel
-								className={styles.card}
-								label={doc2}
-								labelPlacement="bottom"
-								control={
-									<span>
-										<Checkbox
-											inputProps={{ "aria-label": `Checkbox ${doc2}` }}
-											checked={doc2Selected}
-											onChange={(event) => setDoc2Selected(event.target.checked)}
-										/>
-										<FontAwesomeIcon
-											icon={faFile}
-											className={styles.dropzoneIcon}
-										/>
-									</span>
-								}
-							/>
-							<FormControlLabel
-								className={styles.card}
-								label={doc3}
-								labelPlacement="bottom"
-								control={
-									<span>
-										<Checkbox
-											inputProps={{ "aria-label": `Checkbox ${doc3}` }}
-											checked={doc3Selected}
-											onChange={(event) => setDoc3Selected(event.target.checked)}
-										/>
-										<FontAwesomeIcon
-											icon={faFile}
-											className={styles.dropzoneIcon}
-										/>
-									</span>
-								}
-							/>
-						</FormGroup>
-						<div className={styles.contextColumn}>
-						{response && <ResponseDisplay response={response} />}
+							<FormGroup className={styles.cardContainer}>
+								<FormControlLabel
+									className={styles.card}
+									label={doc1}
+									labelPlacement="bottom"
+									control={
+										<span>
+											<Checkbox
+												inputProps={{ "aria-label": `Checkbox ${doc1}` }}
+												checked={doc1Selected}
+												onChange={(event) => setDoc1Selected(event.target.checked)}
+											/>
+											<FontAwesomeIcon
+												icon={faFile}
+												className={styles.dropzoneIcon}
+											/>
+										</span>
+									}
+								/>
+								<FormControlLabel
+									className={styles.card}
+									label={doc2}
+									labelPlacement="bottom"
+									control={
+										<span>
+											<Checkbox
+												inputProps={{ "aria-label": `Checkbox ${doc2}` }}
+												checked={doc2Selected}
+												onChange={(event) => setDoc2Selected(event.target.checked)}
+											/>
+											<FontAwesomeIcon
+												icon={faFile}
+												className={styles.dropzoneIcon}
+											/>
+										</span>
+									}
+								/>
+								<FormControlLabel
+									className={styles.card}
+									label={doc3}
+									labelPlacement="bottom"
+									control={
+										<span>
+											<Checkbox
+												inputProps={{ "aria-label": `Checkbox ${doc3}` }}
+												checked={doc3Selected}
+												onChange={(event) => setDoc3Selected(event.target.checked)}
+											/>
+											<FontAwesomeIcon
+												icon={faFile}
+												className={styles.dropzoneIcon}
+											/>
+										</span>
+									}
+								/>
+							</FormGroup>
+
+							<div className={styles.questionInput}>
+								<input
+									type="text"
+									placeholder="Ask a question..."
+									disabled={loading || noDocumentsSelected()}
+									value={question}
+									onChange={(event) => setQuestion(event.target.value)}
+								/>
+								<button
+									type="submit"
+									disabled={loading || !question || noDocumentsSelected()}
+									className={styles.askQuestion}
+									onClick={handleAskQuestion}
+								>
+									Submit
+								</button>
+								{loading && <div className={styles.loader} />}
+							</div>
+
+							<div className={styles.contextColumn}>
+								{response && <ResponseDisplay response={response} />}
+							</div>
+
 						</div>
-
-
-						<div className={styles.questionInput}>
-							<input
-								type="text"
-								placeholder="Ask a question..."
-								disabled={loading || noDocumentsSelected()}
-								value={question}
-								onChange={(event) => setQuestion(event.target.value)}
-							/>
-							<button
-								type="submit"
-								disabled={loading || !question || noDocumentsSelected()}
-								className={styles.askQuestion}
-								onClick={handleAskQuestion}
-							>
-								Submit
-							</button>
-							{loading && <div className={styles.loader} />}
-						</div>
 					</div>
-					</div>
-					</div>
-
 				</div>
-
+			</div>
 		</Page>
 	);
 }
