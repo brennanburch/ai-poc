@@ -457,10 +457,11 @@ body {
 					flex-direction: column;
 					background-color: common.$color-vault-black;
 					color: common.$color-vault-white;
-					align-items: center;
+					align-content: center;
 					text-align: center;
 					justify-content: center;
 					width:100%;
+					font-weight: 300;
 
 
 					h3 {
@@ -500,26 +501,52 @@ body {
 					.content {
 						overflow: hidden;
 						max-height: 0;
-						font-weight: 300;
+						font-weight: 100;
 						transition: max-height 0.5s ease-in-out;
 						text-align: center;
+						padding:16px;
+						justify-content: center;
+						align-content: center;
+						width:80%;
 					}
 
 					.preview {
 						display: flex;
-						white-space: nowrap;
+						white-space: break-spaces;
+						padding:16px;
 						overflow: hidden;
 						text-overflow: ellipsis;
 						text-align: center;
 						align-content: center;
 						justify-content: center;
+
+
+					}
+					.collapsed{
+						.content {
+							display: flex;
+							margin: auto;
+							max-height: 500px;
+							white-space: break-spaces;
+							text-align: center;
+							align-content: center;
+							justify-content: center;
+							font-weight: 100;
+
+						}
 					}
 
 					.expanded {
 						.content {
+							display: flex;
+							margin: auto;
 							max-height: 500px;
 							white-space: break-spaces;
-							padding:16px;
+							text-align: center;
+							align-content: center;
+							justify-content: center;
+							font-weight: 300;
+
 						}
 					}
 				}
