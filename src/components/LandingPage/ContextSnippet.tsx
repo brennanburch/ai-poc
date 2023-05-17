@@ -17,18 +17,18 @@ function ContextSnippet({ context: { name: fileName, content: fileContent }, num
 
 	return (
 		<div className={styles.contextSnippet}>
-			<h6 onClick={toggleCollapse}>
-				Context {number}
+			<h3 onClick={toggleCollapse}>
+				Context {number}: {" "}
 				<label className={styles.title}>
 					{fileName}
-					<span className={styles.arrow}>{collapsed ? "▼" : "▲"}</span>
+					<span className={styles.arrow}>{collapsed ? "▼" : "▲"}</span></label>
 					<div className={collapsed ? styles.collapsed : styles.expanded}>
 						<p className={collapsed ? styles.preview : styles.content}>
 							{fileContent}
 						</p>
 					</div>
-				</label>
-			</h6>
+
+			</h3>
 
 		</div>
 	);

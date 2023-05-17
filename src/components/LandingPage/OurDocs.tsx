@@ -81,27 +81,28 @@ function OurDocs() {
 
 					<div className={styles.horizontalContainer}>
 						<div className={styles.rightColumn}>
-							<FormGroup className={styles.cardContainer}>
+							<FormGroup className={styles.darkContainer}>
+								<div className={styles.cardKennedy}>
 								<FormControlLabel
-									className={styles.card}
+									className={styles.cardContent}
 									label={doc1}
 									labelPlacement="bottom"
 									control={
 										<span>
 											<Checkbox
+
 												inputProps={{ "aria-label": `Checkbox ${doc1}` }}
 												checked={doc1Selected}
 												onChange={(event) => setDoc1Selected(event.target.checked)}
 											/>
-											<FontAwesomeIcon
-												icon={faFile}
-												className={styles.dropzoneIcon}
-											/>
+
 										</span>
 									}
 								/>
+								</div>
+								<div className={styles.cardLincoln}>
 								<FormControlLabel
-									className={styles.card}
+									className={styles.cardContent}
 									label={doc2}
 									labelPlacement="bottom"
 									control={
@@ -111,15 +112,14 @@ function OurDocs() {
 												checked={doc2Selected}
 												onChange={(event) => setDoc2Selected(event.target.checked)}
 											/>
-											<FontAwesomeIcon
-												icon={faFile}
-												className={styles.dropzoneIcon}
-											/>
+
 										</span>
 									}
 								/>
+								</div>
+								<div className={styles.cardReagan}>
 								<FormControlLabel
-									className={styles.card}
+									className={styles.cardContent}
 									label={doc3}
 									labelPlacement="bottom"
 									control={
@@ -129,13 +129,11 @@ function OurDocs() {
 												checked={doc3Selected}
 												onChange={(event) => setDoc3Selected(event.target.checked)}
 											/>
-											<FontAwesomeIcon
-												icon={faFile}
-												className={styles.dropzoneIcon}
-											/>
+
 										</span>
 									}
 								/>
+								</div>
 							</FormGroup>
 
 							<div className={styles.questionInput}>

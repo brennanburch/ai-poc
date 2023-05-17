@@ -128,6 +128,7 @@ function LandingPage() {
 
 				<div className={styles.workArea}>
 					<h1>Poetic AI Playground Chat</h1>
+					
 					<div className={styles.horizontalContainer}>
 
 						<div className={styles.rightColumn}>

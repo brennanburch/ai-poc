@@ -71,31 +71,103 @@ body {
 .chatSection {
 	height: 80vh;
 }
+
+
 .CardContainer{
+	position: relative;
 	margin-top: 20px;
 	display: grid;
-    grid-template-columns: 3fr;
-    padding: 1em;
-    grid-row-gap: 10px;
+    grid-template-columns: auto auto auto;
+	grid-gap: 20px 50px;
+	height: 300px;
+    grid-column-gap: 10px!important;
 	align-items:center;
+
 	width: 100%;
-	height:200px;
+
 	font-weight: 700!important;
 }
-.card{
 
+
+.cardContent{
+	display:flex;
+	position: absolute;
+	bottom: 0;
+	left: auto;
+	background-color: common.$color-vault-gray;
+	width:100%;
+	border-radius: 0px 0px 8px 8px;
+
+
+}
+
+.cardKennedy{
+	background-image: url("../../assets/img/common/jfk.jpeg"), linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5));
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	background-size: cover;
+  background-blend-mode: overlay;
 	border-radius: 8px;
-	margin: 10px;
-
+	height: 300px;
+	width:250px;
+	position: relative;
 	text-align: center;
 	cursor: pointer;
-	font-size: 24px;
+	font-size: 20px;
 	font-weight: 500!important;
-	color: common.$color-vault-black;
+	color: common.$color-vault-white;
 	transition: 300ms ease-in;
 	display: flex;
 	  align-items: center;
 	  justify-content: center;
+	 margin:10px;
+
+
+
+}
+.cardLincoln{
+	background-image: url("../../assets/img/common/lincoln.jpg"), linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5));
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	background-size: cover;
+  background-blend-mode: multiply;
+  position: relative;
+	border-radius: 8px;
+	height: 300px;
+	width:250px;
+	text-align: center;
+	cursor: pointer;
+	font-size: 24px;
+	font-weight: 500!important;
+	color: common.$color-vault-white;
+	transition: 300ms ease-in;
+	display: flex;
+	  align-items: center;
+	  justify-content: center;
+	  margin:10px;
+
+}
+.cardReagan{
+	background-image: url("../../assets/img/common/reagan.jpeg"), linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5));
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	border-radius: 8px;
+	height: 300px;
+	width:250px;
+	position: relative;
+	text-align: center;
+	cursor: pointer;
+	font-size: 24px;
+	font-weight: 500!important;
+	color: common.$color-vault-white;
+	transition: 300ms ease-in;
+	display: flex;
+	  align-items: center;
+	  justify-content: center;
+	  margin:10px;
 
 }
 
@@ -169,9 +241,22 @@ body {
 			flex-direction: row;
 			height:auto;
 			width:100%;
+			justify-content: center;
 			border-radius: 8px;
 			background-color: common.$color-vault-white;
 		}
+		.darkContainer{
+			display: flex;
+			border: 2px solid common.$color-vault-black;
+			flex-direction: row;
+			height:auto;
+			width:100%;
+			padding:10px;
+			justify-content: center;
+			border-radius: 8px;
+			background-color: common.$color-vault-black;
+		}
+
 
 		.leftColumn {
 			display: flex;
@@ -199,7 +284,7 @@ body {
 		.contextColumn {
 			display: flex;
 			flex-direction: column;
-			width: 80%;
+			width: 100%;
 			height: auto;
 
 		}
@@ -217,7 +302,7 @@ body {
 			justify-content: center;
 			text-align: center;
 
-			
+
 
 		}
 
@@ -356,44 +441,47 @@ body {
 			}
 
 			.contexts {
-				margin: 16px;
+				margin: auto;
+				padding:16px;
+				width:100%;
+
 
 
 				.contextSnippet {
-					margin-bottom: 16px;
+					margin: auto;
 					border: 2px solid;
-					border-radius: 4px;
+					border-radius: 24px;
 					display: flex;
 					flex-direction: column;
-					width:auto;
+					background-color: common.$color-vault-black;
+					color: common.$color-vault-white;
+					align-items: center;
+					text-align: center;
+					justify-content: center;
+					width:100%;
 
 
-					h4 {
+					h3 {
 						cursor: pointer;
-						display: flex;
 						align-items: center;
-						color: common.$color-vault-white;
 						font-size: 20px;
 						font-weight: 400;
-						padding-top: 30px;
+						padding-top:16px;
 
 						.title {
 							font-weight: 100;
-							margin-left: 14px;
 							padding: 14px;
-							border: 1px solid common.$color-vault-black;
-							border-radius: 14px;
-							display: flex;
 							align-items: center;
-							padding-right: 10px;
+							padding: 10px;
+
 
 
 							.arrow {
-								margin-left: 14px;
+								margin-left: 24px;
 								font-stretch: expanded;
 								font-size: 14px;
 								transform: scaleY(0.75);
-								padding-left: 10px;
+
 							}
 						}
 
@@ -410,21 +498,26 @@ body {
 					.content {
 						overflow: hidden;
 						max-height: 0;
-						transition: max-height 0.3s ease-in-out;
+						font-weight: 300;
+						transition: max-height 0.5s ease-in-out;
+						text-align: center;
 					}
 
 					.preview {
-						display: inline-block;
+						display: flex;
 						white-space: nowrap;
 						overflow: hidden;
 						text-overflow: ellipsis;
-						max-width: 50%;
+						text-align: center;
+						align-content: center;
+						justify-content: center;
 					}
 
 					.expanded {
 						.content {
 							max-height: 500px;
 							white-space: break-spaces;
+							padding:16px;
 						}
 					}
 				}
@@ -479,18 +572,41 @@ h3 {
 	}
 
 	100% {
-		background-color: common.$color-vault-gray;
+		background-color: common.$color-vault-blue;
 	}
 }
 
-@media screen and (max-width: 425px) {
+@keyframes background-color-animation-dark {
+	0% {
+		background-color: common.$color-vault-black;
+	}
+
+	25% {
+		background-color: common.$color-vault-blue-dark;
+	}
+
+	50% {
+		background-color: common.$color-vault-blue;
+	}
+
+	75% {
+		background-color: common.$color-vault-blue-dark;
+	}
+
+	100% {
+		background-color: common.$color-vault-black;
+	}
+}
+
+@media screen and (max-width: 768px) {
 	.CardContainer{
-		margin-top: 20px;
+		margin: 20px;
 		display: grid;
-		grid-template-columns: 1fr!important;
-		padding: 1em;
+		grid-template-columns: 1fr;
+		padding: auto;
 		grid-row-gap: 10px;
 		align-items:center;
+		justify-content: center;
 		width: 100%;
 		height:auto;
 		font-weight: 700!important;
@@ -503,6 +619,67 @@ h3 {
 		width:100%;
 		border-radius: 8px;
 		background-color: common.$color-vault-white;
+	}
+
+	.cardKennedy{
+		background-image: url("../../assets/img/common/jfk.jpeg"), linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5));
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: center;
+		border-radius: 8px;
+		height: 300px;
+		width:100%;
+
+		text-align: center;
+		cursor: pointer;
+		font-size: 20px;
+		font-weight: 500!important;
+		color: common.$color-vault-white;
+		transition: 300ms ease-in;
+		display: flex;
+		  align-items: center;
+		  justify-content: center;
+
+
+	}
+	.cardLincoln{
+		background-image: url("../../assets/img/common/lincoln.jpg"), linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5));
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: center;
+		border-radius: 8px;
+		height: 300px;
+		width:100%;
+		text-align: center;
+		cursor: pointer;
+		font-size: 24px;
+		font-weight: 500!important;
+		color: common.$color-vault-white;
+		transition: 300ms ease-in;
+		display: flex;
+		  align-items: center;
+		  justify-content: center;
+
+	}
+	.cardReagan{
+		background-image: url("../../assets/img/common/reagan.jpeg"), linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5));
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: center;
+		border-radius: 8px;
+		height: 300px;
+		width:100%;
+
+		text-align: center;
+		cursor: pointer;
+		font-size: 24px;
+		font-weight: 500!important;
+		color: common.$color-vault-white;
+		transition: 300ms ease-in;
+		display: flex;
+		  align-items: center;
+		  justify-content: center;
+
 	}
 }
 
