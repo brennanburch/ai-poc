@@ -49,13 +49,13 @@ export const submitQuestion = async ({ question, sessionId }: QuestionInput): Pr
 
 type QuestionForDocsInput = {
 	question: string;
-	documents: string[];
+	document: string;
 };
 
-export const submitQuestionForDocs = async ({ question, documents }: QuestionForDocsInput): Promise<Answer> => (ky
+export const submitQuestionForDocs = async ({ question, document }: QuestionForDocsInput): Promise<Answer> => (ky
 	.post(
 		"docs/chat-curated",
-		{ json: { message: question, documents }, timeout },
+		{ json: { message: question, document }, timeout },
 	)
 	.json()
 );

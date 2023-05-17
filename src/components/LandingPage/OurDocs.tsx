@@ -2,8 +2,8 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFile } from "@fortawesome/free-solid-svg-icons";
 import FormGroup from "@mui/material/FormGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
+import { RadioGroup, Radio, FormControlLabel } from "@mui/material";
 import { submitQuestionForDocs, type Answer } from "@helpers/server.ts";
 import Page from "@components/Page";
 import ResponseDisplay from "./ResponseDisplay.tsx";
@@ -11,18 +11,17 @@ import styles from "./LandingPage.module.scss";
 
 function OurDocs() {
 	const [question, setQuestion] = React.useState("");
-	const [doc1Selected, setDoc1Selected] = React.useState(false);
-	const [doc2Selected, setDoc2Selected] = React.useState(false);
-	const [doc3Selected, setDoc3Selected] = React.useState(false);
+	const [doc, setDoc] = React.useState("KennedyMoonSpeech.txt");
 	const [errorMessage, setErrorMessage] = React.useState("");
 	const [response, setResponse] = React.useState<Answer>();
 	const [loading, setLoading] = React.useState(false);
 
-	const noDocumentsSelected = () => !doc1Selected && !doc2Selected && !doc3Selected;
-
 	const doc1 = "Chat with Kennedy's \"We Choose The Moon\" speech transcript.";
+	const doc1FileName = "KennedyMoonSpeech.txt";
 	const doc2 = "Chat with Lincoln's \"Gettysburg Address\" transcript.";
+	const doc2FileName = "GettysburgSpeech.txt";
 	const doc3 = "Chat with Reagan's \"The Berlin Wall\" speech transcript.";
+	const doc3FileName = "ReaganBerlinWallSpeech.txt";
 
 	/** Question submission */
 	const handleAskQuestion = async () => {
@@ -30,13 +29,7 @@ function OurDocs() {
 		console.log(`Asking question: ${question}`);
 
 		try {
-			const selectedDocuments = [
-				doc1Selected && doc1,
-				doc2Selected && doc2,
-				doc3Selected && doc3,
-			].filter(Boolean) as string[];
-
-			const response = await submitQuestionForDocs({ question, documents: selectedDocuments });
+			const response = await submitQuestionForDocs({ question, document: doc });
 
 			setResponse(response);
 		} catch (error: unknown) {
@@ -81,72 +74,55 @@ function OurDocs() {
 
 					<div className={styles.horizontalContainer}>
 						<div className={styles.rightColumn}>
-							<FormGroup className={styles.darkContainer}>
+							<RadioGroup
+								className={styles.darkContainer}
+								aria-labelledby="documents-radio-button-group-label"
+								name="documents-radio-buttons-group"
+								defaultValue={doc1FileName}
+							>
 								<div className={styles.cardKennedy}>
 									<FormControlLabel
 										className={styles.cardContent}
+										value={doc1FileName}
 										label={doc1}
 										labelPlacement="bottom"
-										control={
-											<span>
-												<Checkbox
-
-													inputProps={{ "aria-label": `Checkbox ${doc1}` }}
-													checked={doc1Selected}
-													onChange={(event) => setDoc1Selected(event.target.checked)}
-												/>
-
-											</span>
-										}
+										control={<Radio />}
+										onChange={() => setDoc(doc1FileName)}
 									/>
 								</div>
 								<div className={styles.cardLincoln}>
 									<FormControlLabel
 										className={styles.cardContent}
+										value={doc2FileName}
 										label={doc2}
 										labelPlacement="bottom"
-										control={
-											<span>
-												<Checkbox
-													inputProps={{ "aria-label": `Checkbox ${doc2}` }}
-													checked={doc2Selected}
-													onChange={(event) => setDoc2Selected(event.target.checked)}
-												/>
-
-											</span>
-										}
+										control={<Radio />}
+										onChange={() => setDoc(doc2FileName)}
 									/>
 								</div>
 								<div className={styles.cardReagan}>
 									<FormControlLabel
 										className={styles.cardContent}
+										value={doc3FileName}
 										label={doc3}
 										labelPlacement="bottom"
-										control={
-											<span>
-												<Checkbox
-													inputProps={{ "aria-label": `Checkbox ${doc3}` }}
-													checked={doc3Selected}
-													onChange={(event) => setDoc3Selected(event.target.checked)}
-												/>
-
-											</span>
-										}
+										control={<Radio />}
+										onChange={() => setDoc(doc3FileName)}
 									/>
 								</div>
-							</FormGroup>
+							</RadioGroup>
 
 							<div className={styles.questionInput}>
 								<input
 									type="text"
 									placeholder="Ask a question..."
-									disabled={loading || noDocumentsSelected()}
+									disabled={loading}
 									value={question}
 									onChange={(event) => setQuestion(event.target.value)}
 								/>
 								<button
 									type="submit"
-									disabled={loading || !question || noDocumentsSelected()}
+									disabled={loading || !question}
 									className={styles.askQuestion}
 									onClick={handleAskQuestion}
 								>
