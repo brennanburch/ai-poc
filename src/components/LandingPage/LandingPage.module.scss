@@ -79,7 +79,7 @@ body {
 	display: grid;
     grid-template-columns: auto auto auto;
 	grid-gap: 20px 50px;
-	height: 300px;
+	height: 400px;
     grid-column-gap: 10px!important;
 	align-items:center;
 
@@ -93,8 +93,10 @@ body {
 	display:flex;
 	position: absolute;
 	bottom: 0;
-	left: auto;
-	background-color: common.$color-vault-gray;
+	height: 150px;
+	justify-content: center;
+	padding:8px;
+	background-color: common.$color-vault-blue;
 	width:100%;
 	border-radius: 0px 0px 8px 8px;
 
@@ -109,7 +111,7 @@ body {
 	background-size: cover;
   background-blend-mode: overlay;
 	border-radius: 8px;
-	height: 300px;
+	height: 400px;
 	width:250px;
 	position: relative;
 	text-align: center;
@@ -135,7 +137,7 @@ body {
   background-blend-mode: multiply;
   position: relative;
 	border-radius: 8px;
-	height: 300px;
+	height: 400px;
 	width:250px;
 	text-align: center;
 	cursor: pointer;
@@ -155,7 +157,7 @@ body {
 	background-size: cover;
 	background-position: center;
 	border-radius: 8px;
-	height: 300px;
+	height: 400px;
 	width:250px;
 	position: relative;
 	text-align: center;

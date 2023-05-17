@@ -20,9 +20,9 @@ function OurDocs() {
 
 	const noDocumentsSelected = () => !doc1Selected && !doc2Selected && !doc3Selected;
 
-	const doc1 = "Customer-Rights.pdf";
-	const doc2 = "PMA-FAQ.pdf";
-	const doc3 = "Tickets-Museo-Del-Prado.pdf";
+	const doc1 = "Chat with Kennedy's \"We Choose The Moon\" speech transcript.";
+	const doc2 = "Chat with Lincoln's \"Gettysburg Address\" transcript.";
+	const doc3 = "Chat with Reagan's \"The Berlin Wall\" speech transcript.";
 
 	/** Question submission */
 	const handleAskQuestion = async () => {
