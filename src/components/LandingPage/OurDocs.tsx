@@ -1,8 +1,4 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFile } from "@fortawesome/free-solid-svg-icons";
-import FormGroup from "@mui/material/FormGroup";
-import Checkbox from "@mui/material/Checkbox";
 import { RadioGroup, Radio, FormControlLabel } from "@mui/material";
 import { submitQuestionForDocs, type Answer } from "@helpers/server.ts";
 import Page from "@components/Page";
@@ -42,19 +38,20 @@ function OurDocs() {
 		setLoading(false);
 	};
 
-	React.useEffect(() => {
-		const handleKeyDown = async (event: KeyboardEvent) => {
-			if (event.key === "Enter" && !loading && question) {
-				await handleAskQuestion();
-			}
-		};
+	// Disabled because it breaks choosing the doc
+	// React.useEffect(() => {
+	// 	const handleKeyDown = async (event: KeyboardEvent) => {
+	// 		if (event.key === "Enter" && !loading && question) {
+	// 			await handleAskQuestion();
+	// 		}
+	// 	};
 
-		document.addEventListener("keydown", handleKeyDown);
+	// 	document.addEventListener("keydown", handleKeyDown);
 
-		return () => {
-			document.removeEventListener("keydown", handleKeyDown);
-		};
-	}, [loading, question]);
+	// 	return () => {
+	// 		document.removeEventListener("keydown", handleKeyDown);
+	// 	};
+	// }, [loading, question]);
 
 	return (
 		<Page
@@ -79,6 +76,8 @@ function OurDocs() {
 								aria-labelledby="documents-radio-button-group-label"
 								name="documents-radio-buttons-group"
 								defaultValue={doc1FileName}
+								value={doc}
+								onChange={(event) => setDoc(event.target.value)}
 							>
 								<div className={styles.cardKennedy}>
 									<FormControlLabel
@@ -87,7 +86,6 @@ function OurDocs() {
 										label={doc1}
 										labelPlacement="bottom"
 										control={<Radio />}
-										onChange={() => setDoc(doc1FileName)}
 									/>
 								</div>
 								<div className={styles.cardLincoln}>
@@ -97,7 +95,6 @@ function OurDocs() {
 										label={doc2}
 										labelPlacement="bottom"
 										control={<Radio />}
-										onChange={() => setDoc(doc2FileName)}
 									/>
 								</div>
 								<div className={styles.cardReagan}>
@@ -107,7 +104,6 @@ function OurDocs() {
 										label={doc3}
 										labelPlacement="bottom"
 										control={<Radio />}
-										onChange={() => setDoc(doc3FileName)}
 									/>
 								</div>
 							</RadioGroup>
