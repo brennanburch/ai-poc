@@ -689,10 +689,34 @@ h3 {
 		flex-direction: row;
 		height:auto;
 		width:100%;
-		
+
 		justify-content: center;
 		border-radius: 8px;
 		background-color: common.$color-vault-black;
+	}
+	.rightColumn {
+		display: flex;
+		flex-direction: column;
+		text-align: center;
+		justify-content: center;
+		align-items: center;
+		padding: 0px;
+		width: 100%;
+		height: auto;
+
+	}
+	.cardContent{
+		display:flex;
+		position: absolute;
+		bottom: 0;
+		height: 100px;
+		justify-content: center;
+		padding:8px;
+		background-color: common.$color-vault-blue;
+		width:100%;
+		border-radius: 0px 0px 8px 8px;
+
+
 	}
 }
 
