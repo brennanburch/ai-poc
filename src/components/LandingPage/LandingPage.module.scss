@@ -602,7 +602,7 @@ h3 {
 
 @media screen and (max-width: 768px) {
 	.CardContainer{
-		
+
 		display: grid;
 		grid-template-columns: 1fr;
 		padding: auto;
@@ -682,6 +682,17 @@ h3 {
 		  align-items: center;
 		  justify-content: center;
 
+	}
+	.darkContainer{
+		display: flex;
+		border: 2px solid common.$color-vault-black;
+		flex-direction: row;
+		height:auto;
+		width:100%;
+		
+		justify-content: center;
+		border-radius: 8px;
+		background-color: common.$color-vault-black;
 	}
 }
 
