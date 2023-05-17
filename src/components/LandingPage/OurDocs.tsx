@@ -83,56 +83,56 @@ function OurDocs() {
 						<div className={styles.rightColumn}>
 							<FormGroup className={styles.darkContainer}>
 								<div className={styles.cardKennedy}>
-								<FormControlLabel
-									className={styles.cardContent}
-									label={doc1}
-									labelPlacement="bottom"
-									control={
-										<span>
-											<Checkbox
+									<FormControlLabel
+										className={styles.cardContent}
+										label={doc1}
+										labelPlacement="bottom"
+										control={
+											<span>
+												<Checkbox
 
-												inputProps={{ "aria-label": `Checkbox ${doc1}` }}
-												checked={doc1Selected}
-												onChange={(event) => setDoc1Selected(event.target.checked)}
-											/>
+													inputProps={{ "aria-label": `Checkbox ${doc1}` }}
+													checked={doc1Selected}
+													onChange={(event) => setDoc1Selected(event.target.checked)}
+												/>
 
-										</span>
-									}
-								/>
+											</span>
+										}
+									/>
 								</div>
 								<div className={styles.cardLincoln}>
-								<FormControlLabel
-									className={styles.cardContent}
-									label={doc2}
-									labelPlacement="bottom"
-									control={
-										<span>
-											<Checkbox
-												inputProps={{ "aria-label": `Checkbox ${doc2}` }}
-												checked={doc2Selected}
-												onChange={(event) => setDoc2Selected(event.target.checked)}
-											/>
+									<FormControlLabel
+										className={styles.cardContent}
+										label={doc2}
+										labelPlacement="bottom"
+										control={
+											<span>
+												<Checkbox
+													inputProps={{ "aria-label": `Checkbox ${doc2}` }}
+													checked={doc2Selected}
+													onChange={(event) => setDoc2Selected(event.target.checked)}
+												/>
 
-										</span>
-									}
-								/>
+											</span>
+										}
+									/>
 								</div>
 								<div className={styles.cardReagan}>
-								<FormControlLabel
-									className={styles.cardContent}
-									label={doc3}
-									labelPlacement="bottom"
-									control={
-										<span>
-											<Checkbox
-												inputProps={{ "aria-label": `Checkbox ${doc3}` }}
-												checked={doc3Selected}
-												onChange={(event) => setDoc3Selected(event.target.checked)}
-											/>
+									<FormControlLabel
+										className={styles.cardContent}
+										label={doc3}
+										labelPlacement="bottom"
+										control={
+											<span>
+												<Checkbox
+													inputProps={{ "aria-label": `Checkbox ${doc3}` }}
+													checked={doc3Selected}
+													onChange={(event) => setDoc3Selected(event.target.checked)}
+												/>
 
-										</span>
-									}
-								/>
+											</span>
+										}
+									/>
 								</div>
 							</FormGroup>
 

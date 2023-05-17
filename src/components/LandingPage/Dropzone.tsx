@@ -39,7 +39,7 @@ function Dropzone({ name: fileName, isLoading, isSessionStarted }: ContextSnippe
 			{isLoading
 				? (isSessionStarted
 					? "AI processing document. Please wait..."
-						: "Loading...")
+					: "Loading...")
 				: "Drag and drop files to add to the knowledge base, or click to select files"}
 			<br />
 			{fileName}

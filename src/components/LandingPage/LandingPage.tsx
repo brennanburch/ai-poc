@@ -128,7 +128,7 @@ function LandingPage() {
 
 				<div className={styles.workArea}>
 					<h1>Poetic AI Playground Chat</h1>
-					
+
 					<div className={styles.horizontalContainer}>
 
 						<div className={styles.rightColumn}>
@@ -170,8 +170,6 @@ function LandingPage() {
 								</button>
 								{loading && <div className={styles.loader} />}
 							</div>
-
-
 
 							<div className={styles.contextColumn}>
 								{response && <ResponseDisplay response={response} />}

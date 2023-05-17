@@ -21,12 +21,13 @@ function ContextSnippet({ context: { name: fileName, content: fileContent }, num
 				Context {number}: {" "}
 				<label className={styles.title}>
 					{fileName}
-					<span className={styles.arrow}>{collapsed ? "▼" : "▲"}</span></label>
-					<div className={collapsed ? styles.collapsed : styles.expanded}>
-						<p className={collapsed ? styles.preview : styles.content}>
-							{fileContent}
-						</p>
-					</div>
+					<span className={styles.arrow}>{collapsed ? "▼" : "▲"}</span>
+				</label>
+				<div className={collapsed ? styles.collapsed : styles.expanded}>
+					<p className={collapsed ? styles.preview : styles.content}>
+						{fileContent}
+					</p>
+				</div>
 
 			</h3>
 
